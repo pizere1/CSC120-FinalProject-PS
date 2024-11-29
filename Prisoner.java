@@ -1,0 +1,112 @@
+public class Prisoner extends People {
+    private String crime;
+    private int prisonerNumber;
+    public int x;
+    public int y;
+    public int z;
+    private String lastMove;
+
+
+    /**
+     * constructor
+     * @param name of the player
+     * @param age of the player
+     * @param title would be player/ prisoner
+     * @param crime would be the crime he'd committed to be in the prison
+     * @param prisonerNumber would be his unique identity number in the prison
+     * use x, y, and z axis to change locations
+     */
+
+    public Prisoner (String name, String age, String title, String crime, int prisonerNumber){
+        super(name, prisonerNumber, title);
+        this.crime = crime;
+        this.prisonerNumber = prisonerNumber;
+        this.x = 0;
+        this.y = 0;
+        this.z = 0;
+        this.lastMove = "";
+    }
+
+    //methods
+
+    /**
+     * sends the player to east direction by subtracting 2 value to x axis.
+     */
+     public void goEast(){
+        this.x -= 2;
+        this.lastMove = "east";
+    }
+
+    /**
+     * sends the player to west direction by adding 2 value to x axis.
+     */
+
+    public void goWest(){
+        this.x += 2;
+        this.lastMove = "west";
+    }
+
+    /**
+     * sends the player to west direction by adding 2 value to x axis
+     */
+
+    public void goNorth(){
+        this.y+= 2;
+        this.lastMove = "north";
+    }
+
+    /**
+     * sends the player to south direction by subtracting 2 value to y axis
+     */
+
+    public void goSouth(){
+        this.y -=2;
+        this.lastMove = "south";
+    }
+
+    /**
+     * sends the player to down by subtracting 2 from z axis
+     */
+    public void goDown(){
+        this.z -= 2;
+        this.lastMove = "down";
+    }
+
+    /**
+     * sends the player to down by adding 2 to z axis
+     */
+    public void goUp(){
+        this.z += 2;
+        this.lastMove = "up";
+    }
+
+    /**
+     * reverses the last move
+     */
+
+    public void goback() {
+        if (this.lastMove.equals("east")) {
+            this.x += 2;  
+            //getlocation()
+        } else if (this.lastMove.equals("west")) {
+            this.x -= 2; 
+            //getlocation()
+        } else if (this.lastMove.equals("down")) {
+            this.z += 2;  
+            //getlocation()
+        } else if (this.lastMove.equals("up")) {
+            this.z -= 2; 
+
+        } else if (this.lastMove.equals("north")) {
+            this.y -= 2;  
+        } else if (this.lastMove.equals("south")) {
+                this.y += 2; 
+        } else {
+            System.out.println("No previous move to undo.");
+        }
+
+        this.lastMove = ""; //Reseetting into empty set again because we've reversed the direction
+    }
+
+
+}
