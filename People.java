@@ -6,7 +6,7 @@ public class People{
      * attributes required for people name, their age and what position or title they have within the game 
      * e.g. cellmate, security,etc.
      */
-    public String name;
+    private String name;
     private int age;
     protected String title;
 
@@ -16,8 +16,15 @@ public class People{
         this.title = title;
     }
 
-    public static void main(String[] args){
-        People Prisoner = new People("Luva", 46, "Prisoner");
-
+    public String getName(){
+        return this.name;
     }
+
+    public int getAge(){
+        return this.age;
+    }
+    //public static void main(String[] args){
+       // People Prisoner = new People("Luva", 46, "Prisoner");
+
+    //}
 }

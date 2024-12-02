@@ -1,10 +1,11 @@
 public class Prisoner extends People {
-    private String crime;
+    protected String crime;
     private int prisonerNumber;
     public int x;
     public int y;
     public int z;
     private String lastMove;
+    protected Status status;
 
 
     /**
@@ -17,17 +18,25 @@ public class Prisoner extends People {
      * use x, y, and z axis to change locations
      */
 
-    public Prisoner (String name, String age, String title, String crime, int prisonerNumber){
-        super(name, prisonerNumber, title);
+    public Prisoner (String name, int age, String title, String crime, int prisonerNumber, Status status){
+        super(name, age , title);
         this.crime = crime;
         this.prisonerNumber = prisonerNumber;
         this.x = 0;
         this.y = 0;
         this.z = 0;
         this.lastMove = "";
+        this.status = status;
+    }
+    //methods
+
+    public Status getStatus(){
+        return this.status;
     }
 
-    //methods
+    public String getCrime(){
+        return this.crime;
+    }
 
     /**
      * sends the player to east direction by subtracting 2 value to x axis.
@@ -35,6 +44,7 @@ public class Prisoner extends People {
      public void goEast(){
         this.x -= 2;
         this.lastMove = "east";
+        //getlocation
     }
 
     /**
@@ -44,6 +54,7 @@ public class Prisoner extends People {
     public void goWest(){
         this.x += 2;
         this.lastMove = "west";
+        //getlocation
     }
 
     /**
@@ -53,6 +64,7 @@ public class Prisoner extends People {
     public void goNorth(){
         this.y+= 2;
         this.lastMove = "north";
+        //getlocation
     }
 
     /**
@@ -62,6 +74,7 @@ public class Prisoner extends People {
     public void goSouth(){
         this.y -=2;
         this.lastMove = "south";
+        //getlocation
     }
 
     /**
@@ -70,6 +83,7 @@ public class Prisoner extends People {
     public void goDown(){
         this.z -= 2;
         this.lastMove = "down";
+        //getlocation
     }
 
     /**
@@ -78,6 +92,11 @@ public class Prisoner extends People {
     public void goUp(){
         this.z += 2;
         this.lastMove = "up";
+        //getlocation
+    }
+
+    public void escape(){
+        //stil to think ??????
     }
 
     /**
@@ -110,3 +129,10 @@ public class Prisoner extends People {
 
 
 }
+
+
+//thoughts for now 
+
+//have a get location class in building or somewhere
+
+// have a location limit (like a maximum value of axis)
