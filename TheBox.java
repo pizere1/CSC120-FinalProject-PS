@@ -1,16 +1,20 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class TheBox {
-    public TheBox(){
+    
+    public int prisonerNumber;
+    public TheBox(int prisonerNumber){
+        this.prisonerNumber = prisonerNumber;
         boxContent();
     }
+    
     Scanner scanner = new Scanner(System.in);
     String userInput;
     Scanner sc = new Scanner(System.in);
     boolean isCracked = false;
     boolean isOpen=false;
     boolean wasOpened = false;
-    String pocketKnife="pocketKnife";
+    String pocketKnife="pocketknife";
     String key="key";
     String rope="rope";
     String pickedItem;
@@ -38,8 +42,8 @@ public class TheBox {
         }
     }
 
-    private boolean codeBreaking(String code){
-        if (code.equals("z1m")){
+    private boolean codeBreaking(int code){
+        if (code == prisonerNumber){
             this.isCracked=true;
             this.isOpen=true;
         } else{
@@ -52,10 +56,11 @@ public class TheBox {
            System.out.println("The box was closed. You can only open it once.");
         } else{
         System.out.println("First Enter the code. The hint is your only companion.");
-        String code=sc.nextLine();
+        int code=sc.nextInt();
+        sc.nextLine();
         while (!codeBreaking(code)){
             System.out.println("Please try again");
-            code=sc.nextLine();
+            code=sc.nextInt();
             codeBreaking(code);
         }
         if(this.isCracked==true){
@@ -81,15 +86,5 @@ public class TheBox {
             System.out.println("There is no "+ pickedItem +" in the box. Choose between the three.");
             boxDisplay();
         }
-    }
-
-    public static void main(String[] args) {
-        //System.out.println("You wake up inside a gray room. You are wearing a dark purple jumpsuit which has the number 213 on the right arm \n" +
-//                "You remember nothing about who you are or why you reached here. Your mind is blank as the walls of the room, except for only " +
-//                "three phrases for company\n\n'The end will always matter but the middle will draw evasion" +
-//                "Most crimes are tolerated but murderers were badly stained.\nYou are less safe inside those walls than anywhere else.'");
-
-        TheBox theBox=new TheBox();
-        theBox.boxChoices();
     }
 }

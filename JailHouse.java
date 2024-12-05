@@ -52,7 +52,7 @@ public class JailHouse {
    public void canEnterRoom(Prisoner p, Room room) {
        int x = p.getX();
        int y = p.getY();
-       int z=p.getZ();
+       int z = p.getZ();
        for(Room feature : jailHouse) {
            if ((feature.x1==x)&&(feature.y1==y)&&(feature.z==z)){
                System.out.println("You can enter "+feature.roomName);

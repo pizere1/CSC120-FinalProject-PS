@@ -131,6 +131,23 @@ public class Prisoner extends People {
 
         this.lastMove = ""; //Reseetting into empty set again because we've reversed the direction
     }
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY(){
+        return this.y;
+    }
+
+    public int getZ(){
+        return this.z;
+    }
+
+    public void setLocation(int x, int y, int z){
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 
 
 }

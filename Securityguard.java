@@ -9,6 +9,7 @@ public class Securityguard extends People {
 
     public void catchPlayer(){
           System.out.println("You're caught. The security guards are taking you back to the prison. No way to escape. Game Over.");
+          //break;
         }
 
     public void operation(){

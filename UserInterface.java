@@ -14,34 +14,54 @@ public class UserInterface {
     }
     
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
         System.out.println("------------------------------------\n");
         System.out.println("WELCOME TO CHANDRA BIHAR PRISON.");
         System.out.println("------------------------------------\n");
         System.out.println("Enter a name for your player");
-        String name = scanner.nextLine();
-        System.out.println("Enter an age for your player");
-        int age = scanner.nextInt();
-        System.out.println("Enter any random 3 digit number");
-        int prisonerNumber = scanner.nextInt();
-        scanner.close();
+        String name = in.nextLine();
+       
+        int age = 0;
+        while (age < 1 || age>120){ 
+            System.out.println("Enter an age for your player");
+            try {
+            age = in.nextInt();
+            } catch (Exception e) {
+            System.out.println("Invalid Input. Please enter a valid positive integer for age" );
+            in.nextLine();
+            }
+        }
+
+        int prisonerNumber = 0;
+        while (prisonerNumber < 100 || prisonerNumber >= 1000){ 
+            System.out.println("Enter any random 3 digit number");
+
+            try {
+            prisonerNumber = in.nextInt();
+            } catch (Exception e) {
+            System.out.println("Invalid Input. Please enter a valid 3 digit positive integer" );
+            in.nextLine();
+            }
+        }
+        in.nextLine();
 
         Prisoner player = new Prisoner(name, age, "Prisoner", "Heist", prisonerNumber, Status.IN_JAIL);
+        JailHouse jh  = new JailHouse();
+        TheBox theBox=new TheBox(prisonerNumber);
+
 
         System.out.println( "\n You wakeup inside a gray room. You have number "+ prisonerNumber +" written on your jumpsuit.\n You remember nothing about who you are or how you reached here. \n"+  
         "Your mind is blank as the walls of the room. You are less safe inside these walls than anywhere else.\n" );
-       System.out.println(" You need to figure out an escape. You look around and see a box in your room.");
+       System.out.println(" You need to figure out an escape. You look around a door infront of you and a box in your room.");
 
         while (true){
            // showStatus();
 
-           Scanner scanner1 = new Scanner(System.in);
             System.out.print("\nEnter command: ");
-            String command = scanner1.nextLine().toLowerCase().trim();
-            scanner1.close();
+            String command = in.nextLine().toLowerCase().trim();
 
-            if (command.equals("exit")) {
-                System.out.println("Exiting game...");
+            if (command.equals("quit")) {
+                System.out.println("Quitting game...");
                 break;
             } else if (command.equals("move east")) {
                 prisoner.goEast();
@@ -65,6 +85,8 @@ public class UserInterface {
                // building.getlocation();
             } else if (command.contains("move")&&!command.contains("east")&&!command.contains("west")&&!command.contains("north")&&!command.contains("south")&&!command.contains("up")&&!command.contains("down")){
                 System.out.println("Incomplete command.");
+            } else if (command.equals("open box") ){
+                theBox.openBoX();
             } else {
                 System.out.println("Unknown command. Try again.");
             }
