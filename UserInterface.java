@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class UserInterface {
 
     public static Prisoner prisoner;
-    public static Scanner scanner;
 
     private static void showStatus() {
         System.out.println("\n=== Prisoner Status ===");
@@ -15,6 +14,7 @@ public class UserInterface {
     }
     
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("------------------------------------\n");
         System.out.println("WELCOME TO CHANDRA BIHAR PRISON.");
         System.out.println("------------------------------------\n");
@@ -24,18 +24,21 @@ public class UserInterface {
         int age = scanner.nextInt();
         System.out.println("Enter any random 3 digit number");
         int prisonerNumber = scanner.nextInt();
+        scanner.close();
 
-        System.out.println(name + " is inside Chandra Bihar Prison's cell number: 212. They re planning to escape." );
         Prisoner player = new Prisoner(name, age, "Prisoner", "Heist", prisonerNumber, Status.IN_JAIL);
-        scanner = new Scanner (System.in);
+
+        System.out.println( "\n You wakeup inside a gray room. You have number "+ prisonerNumber +" written on your jumpsuit.\n You remember nothing about who you are or how you reached here. \n"+  
+        "Your mind is blank as the walls of the room. You are less safe inside these walls than anywhere else.\n" );
+       System.out.println(" You need to figure out an escape. You look around and see a box in your room.");
 
         while (true){
-            showStatus();
+           // showStatus();
 
-            System.out.println("You'll be playing as a prisoner named: "+ name + ". He has been convicted for Heist.");
-
+           Scanner scanner1 = new Scanner(System.in);
             System.out.print("\nEnter command: ");
-            String command = scanner.nextLine().toLowerCase().trim();
+            String command = scanner1.nextLine().toLowerCase().trim();
+            scanner1.close();
 
             if (command.equals("exit")) {
                 System.out.println("Exiting game...");
@@ -56,8 +59,12 @@ public class UserInterface {
                 prisoner.escape();
             } else if (command.equals("status")) {
                 showStatus();
-            } else if (command.equals("back")) {
+            } else if (command.equals("reverse")) {
                 prisoner.goback();
+            } else if (command.equals("get location")) {
+               // building.getlocation();
+            } else if (command.contains("move")&&!command.contains("east")&&!command.contains("west")&&!command.contains("north")&&!command.contains("south")&&!command.contains("up")&&!command.contains("down")){
+                System.out.println("Incomplete command.");
             } else {
                 System.out.println("Unknown command. Try again.");
             }

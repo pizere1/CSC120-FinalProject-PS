@@ -103,6 +103,11 @@ public class Prisoner extends People {
      * reverses the last move
      */
 
+     public void climb(){
+        this.z +=2;
+        this.lastMove = "climb";
+     }
+
     public void goback() {
         if (this.lastMove.equals("east")) {
             this.x += 2;  
