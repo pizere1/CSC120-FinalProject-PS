@@ -50,9 +50,9 @@ public class UserInterface {
         TheBox theBox=new TheBox(prisonerNumber);
 
 
-        System.out.println( "\n You wakeup inside a gray room. You have number "+ prisonerNumber +" written on your jumpsuit.\n You remember nothing about who you are or how you reached here. \n"+  
+        System.out.println( "\n You wakeup inside a gray room. You have number "+ prisonerNumber +" written on your jumpsuit.\n You remember nothing about who you are or how you reached inside this PRISON. \n"+  
         "Your mind is blank as the walls of the room. You are less safe inside these walls than anywhere else.\n" );
-       System.out.println(" You need to figure out an escape. You look around a door infront of you and a box in your room.");
+       System.out.println(" You need to figure out an escape. You look around to find a door infront of you and a box in your room.\n What is your next move?");
 
         while (true){
            // showStatus();
@@ -65,29 +65,44 @@ public class UserInterface {
                 break;
             } else if (command.equals("move east")) {
                 prisoner.goEast();
+                jh.returnLocation(player);
             } else if (command.equals("move west")) {
                 prisoner.goWest();
+                jh.returnLocation(player);
             } else if (command.equals("move north")) {
                 prisoner.goNorth();
+                jh.returnLocation(player);
             } else if (command.equals("move south")) {
                 prisoner.goSouth();
+                jh.returnLocation(player);
             } else if (command.equals("move up")) {
                 prisoner.goUp();
+                jh.returnLocation(player);
             } else if (command.equals("move down")) {
                 prisoner.goDown();
+                jh.returnLocation(player);
             } else if (command.equals("escape")) {
                 prisoner.escape();
+                jh.returnLocation(player);
             } else if (command.equals("status")) {
                 showStatus();
             } else if (command.equals("reverse")) {
                 prisoner.goback();
-            } else if (command.equals("get location")) {
-               // building.getlocation();
+                jh.returnLocation(player);
+            } else if (command.equals("get location") || command.equals("look around")){
+                jh.returnLocation(player);
             } else if (command.contains("move")&&!command.contains("east")&&!command.contains("west")&&!command.contains("north")&&!command.contains("south")&&!command.contains("up")&&!command.contains("down")){
                 System.out.println("Incomplete command.");
             } else if (command.equals("open box") ){
                 theBox.openBoX();
-            } else {
+            } else if (command.equals("go to door")){
+                theBox.goToDoor();
+            } else if (command.equals("open door")) {
+                theBox.openLock();
+            } //else if (command.equals("")){
+
+           // }
+            else {
                 System.out.println("Unknown command. Try again.");
             }
         }

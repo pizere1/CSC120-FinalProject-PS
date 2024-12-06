@@ -51,11 +51,33 @@ public class TheBox {
         }
         return isCracked;
     }
+    public void goToDoor(){
+       System.out.println("You're at the door. You see a lock. What is your next move?");
+    }
+
+    public void openLock(){
+        if (pickedItem.equals("pocketknife")){
+            System.out.println("Door Unlocked.");
+            outsideCell();
+
+        } else {
+            System.out.println("You picked the wrong item. Try again");
+            openBoX();
+        }
+    }
+
+    public void outsideCell(){
+        System.out.println("You're outside cell no: 012. Look to see what's around.");
+
+    }
+
     public void openBoX(){
         if(this.wasOpened==true){
-           System.out.println("The box was closed. You can only open it once.");
+           System.out.println("Reopening the box.");
+           boxContent.remove(pickedItem);
+           boxDisplay();
         } else{
-        System.out.println("First Enter the code. The hint is your only companion.");
+        System.out.println("To open the box you need to enter its code. Your hint lies within the choices you made. The ripple is protected by a triple.");
         int code=sc.nextInt();
         sc.nextLine();
         while (!codeBreaking(code)){
@@ -81,7 +103,7 @@ public class TheBox {
         pickedItem=item.toLowerCase();
         if(boxContent.contains(pickedItem)){
             System.out.println("You have taken the " + pickedItem);
-            System.out.println("The box got reclosed again");
+            System.out.println("The box got closed again");
         } else{
             System.out.println("There is no "+ pickedItem +" in the box. Choose between the three.");
             boxDisplay();

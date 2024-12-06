@@ -32,23 +32,46 @@ public class JailHouse {
        jailHouse.add(Locking_room);
        jailHouse.add(Staircasetop);
    }
+//    public void declaredLocation(int z, int x1, int y1, int x2){
+    // if (z == 0 &&  x1 == 4 && y1 == 0 &&  x2 == 0 && y2 == 4){
+
+    // }
+//    }
+
    public void getLocation(Prisoner p){
-       System.out.print("You are currently at (" +p.getX()+","+p.getY()+","+p.getZ()+").");
-       for(Room r:jailHouse){
-           if(p.getX()==r.x1 && p.getY()==r.y1 && p.getZ()==r.z){//If they are currently at the entrance
-                //System.out.print("You are currently at (" +p.getX()+","+p.getY()+","+p.getZ()+").");
-               System.out.println(" You are at the entrance of " +r.roomName+".");
-           } else{
-               this.wallcount++;
-           }
-       }
-       if(this.wallcount==jailHouse.size()){//If they are not at the entrance of any room
-           System.out.println("There are walls on both side . Keep moving");
-       } else if(wallcount==(jailHouse.size()-1)){
-           System.out.println("There is also a wall on the opposite side");
-       } else{
-       }
-   }
+    wallcount = 0; // Reset wall count for every call
+    System.out.print("You are currently at (" + p.getX() + "," + p.getY() + "," + p.getZ() + ").");
+    for (Room r : jailHouse) {
+        if (p.getX() == r.x1 && p.getY() == r.y1 && p.getZ() == r.z) { // If they are at the entrance
+            System.out.println(" You are at the entrance of " + r.roomName + ".");
+        } else {
+            wallcount++;
+        }
+    }
+    if (wallcount == jailHouse.size()) { // If not at the entrance of any room
+        System.out.println("There are walls on both sides. Keep moving.");
+    } else if (wallcount == (jailHouse.size() - 1)) {
+        System.out.println("There is also a wall on the opposite side.");
+    }
+}
+
+//    public void getLocation(Prisoner p){
+    //    System.out.print("You are currently at (" +p.getX()+","+p.getY()+","+p.getZ()+").");
+    //    for(Room r:jailHouse){
+        //    if(p.getX()==r.x1 && p.getY()==r.y1 && p.getZ()==r.z){//If they are currently at the entrance
+               // System.out.print("You are currently at (" +p.getX()+","+p.getY()+","+p.getZ()+").");
+            //    System.out.println(" You are at the entrance of " +r.roomName+".");
+        //    } else{
+            //    this.wallcount++;
+        //    }
+    //    }
+    //    if(this.wallcount==jailHouse.size()){//If they are not at the entrance of any room
+        //    System.out.println("There are walls on both side . Keep moving");
+    //    } else if(wallcount==(jailHouse.size()-1)){
+        //    System.out.println("There is also a wall on the opposite side");
+    //    } else{
+    //    }
+  //}
    public void canEnterRoom(Prisoner p, Room room) {
        int x = p.getX();
        int y = p.getY();
@@ -75,4 +98,37 @@ public class JailHouse {
        }
        return this.isadeadend;
    }
+
+   public void returnLocation(Prisoner p) {
+    // Loop through all rooms in the jailhouse
+    for (Room r : jailHouse) {
+        // Check if the prisoner is to the east of the room
+        if (p.getY() == r.y1 && p.getZ() == r.z && p.getX() < r.x1 && r.x1 < r.x2) {
+            System.out.println("There is " + r.roomName + " to your east.");
+        }
+        // Check if the prisoner is to the west of the room
+        else if (p.getY() == r.y1 && p.getZ() == r.z && p.getX() > r.x2 && r.x2 > r.x1) {
+            System.out.println("There is " + r.roomName + " to your west.");
+        }
+    }
+}
+
+public static void main(String[] args) {
+    JailHouse jh=new JailHouse();
+    System.out.println(jh.jailHouse.get(0).roomName);
+
+
+}
+
+
+//    public void returnLocation(Prisoner p){
+    //  for(Room r:jailHouse){
+        //  if((p.getX()-2)==r.x1 && p.getY()==r.y1 && p.getZ()==r.z && r.x1>r.x2){
+        //  System.out.println(" There is " +r.roomName+" on your east.");
+        //  }
+        //    if((p.getX()+2)==r.x1 && p.getY()==r.y1 && p.getZ()==r.z && r.x1<r.x2){
+            //    System.out.println(" There is " +r.roomName+" on your west.");
+        //    } 
+    //    }
+    // }
 }
