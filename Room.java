@@ -80,6 +80,13 @@ public class Room {
             }
         }
     }
+    public void exitRoom(Prisoner p) {
+        if(x1>x2){
+        p.setLocation(this.x1+2, this.y1,this.z);
+        } else if(x2>x1){
+            p.setLocation(this.x1-2, this.y1,this.z);
+        }
+    }
 
     public String getRoomName() {
         return roomName;
