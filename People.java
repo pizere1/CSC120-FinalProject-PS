@@ -8,12 +8,11 @@ public class People{
      */
     private String name;
     private int age;
-    protected String title;
 
-    public People(String name, int age, String title){
+
+    public People(String name, int age){
         this.name = name;
         this.age = age;
-        this.title = title;
     }
 
     public String getName(){

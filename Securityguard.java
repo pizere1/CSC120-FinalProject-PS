@@ -2,8 +2,8 @@ public class Securityguard extends People {
 
     public String operation;
 
-    public Securityguard (String name, int age, String title){
-        super(name, age, title);
+    public Securityguard (String name, int age){
+        super(name, age);
        String operation = "Takes people back to Jail";
     }
 

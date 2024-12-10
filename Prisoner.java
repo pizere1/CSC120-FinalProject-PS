@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Prisoner extends People {
     protected String crime;
     private int prisonerNumber;
@@ -6,6 +8,7 @@ public class Prisoner extends People {
     public int z;
     private String lastMove;
     protected Status status;
+    public String[] commands;
 
 
     /**
@@ -18,8 +21,8 @@ public class Prisoner extends People {
      * use x, y, and z axis to change locations
      */
 
-    public Prisoner (String name, int age, String title, String crime, int prisonerNumber, Status status){
-        super(name, age , title);
+    public Prisoner (String name, int age, String crime, int prisonerNumber, Status status){
+        super(name, age);
         this.crime = crime;
         this.prisonerNumber = prisonerNumber;
         this.x = 0;
@@ -147,6 +150,10 @@ public class Prisoner extends People {
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    public static void main(String[] args) {
+        ArrayList commands = new ArrayList<>();
     }
 
 
