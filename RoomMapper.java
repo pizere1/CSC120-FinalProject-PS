@@ -56,10 +56,6 @@ public class RoomMapper {
      }
     }   
 
-    public void keepTrack(){
-        
-    }
-
 
     public void clueCheck(int x, int y, int z, CellMate cellMate){
         if (x == 2 && y == -2 && z == 0){

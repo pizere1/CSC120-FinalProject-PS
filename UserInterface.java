@@ -49,6 +49,7 @@ public class UserInterface {
         RoomMapper mapper = new RoomMapper();
         TheBox theBox=new TheBox(prisonerNumber);
         CellMate cellMate = new CellMate("RamHari", 14, 621);
+        //EscapeRoom escapeRoom = new EscapeRoom("Escape Room", 4 , -2, -2, 9);
 
         mapper.addRoom("Prison Cell", 0, 0, 0); //1
         mapper.addRoom("Hallway in front of cell 11", 2, 0, 0);// 2
@@ -138,6 +139,10 @@ public class UserInterface {
             else {
                 System.out.println("Unknown command. Try again.");
             }
+
+            // if (player.getX() == 4 && player.getY() == -2 && player.getZ() == -2){
+            //     escapeRoom.roomStructure();
+            // }
 
         }
     }

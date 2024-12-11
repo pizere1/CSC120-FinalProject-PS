@@ -7,9 +7,10 @@ import javax.sound.sampled.Clip;
  * A room in front of the escape room
  * just pressurizes the 
  */
-public class AlarmRoom {
+public class AlarmRoom extends Room {
 
-    public AlarmRoom(Securityguard sguard) {
+    public AlarmRoom(String roomName, int x, int y, int z, int roomnumber) {
+        super(roomName, x, y, z, roomnumber);
     }
 
     public void warning(){
