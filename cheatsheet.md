@@ -5,3 +5,6 @@ Note:  It's a good idea to also make this list available inside the game, in res
 # SPOILER ALERT
 
 If your game includes challenges that must be overcome to win, also list them below.
+
+move "north,south,east,west"
+climb "up,down"
