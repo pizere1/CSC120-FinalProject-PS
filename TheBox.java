@@ -52,17 +52,23 @@ public class TheBox {
         return isCracked;
     }
     public void goToDoor(){
-       System.out.println("You're at the door. You see a lock. What is your next move?");
+        if (doorUnlocked == false){
+            System.out.println("You're at the door. You see a lock. What is your next move?");
+        } else{
+            System.out.println("You've already moved past the door.");
+        }
     }
 
     public void openLock(){
-        if (pickedItem.equals("pocketknife")){
-            System.out.println("Door Unlocked.");
-            outsideCell();
-
-        } else {
+        if (itemInHand == true){
+            if (pickedItem.equals("pocketknife")){
+                System.out.println("Door Unlocked.");
+                outsideCell();
+        }  else {
             System.out.println("You picked the wrong item. Try again");
             openBoX();
+        } } else {
+            System.out.println(" You need to find an item to unlock the door. Consider everything around you.");
         }
     }
 

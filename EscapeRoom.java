@@ -6,7 +6,7 @@ public class EscapeRoom extends Room{
     boolean isinsidetheroom;
    
     MugDrawer md = new MugDrawer();
-    //BookDrawer bd = new BookDrawer();
+    BookDrawer bd = new BookDrawer();
     //CactusPotDrawer cpt=new CactusPotDrawer();
    //DeskLampDrawer dl=new DeskLampDrawer();
     //PictureFrameDrawer pf=new PictureFrameDrawer();
@@ -22,16 +22,15 @@ public class EscapeRoom extends Room{
     public EscapeRoom(String roomname, int x, int y, int z, int roomnumber){
         super(roomname, x, y, z, roomnumber);
         this.roomName ="Toxins Store";
-        System.out.println();
-        System.out.println("The door creaks behind you before the lock metals cling in place. You have entered another room.");
-        CoGasJar cgj = new CoGasJar();
-        roomStructure();
     }
     //public void initialize(){}
      /**
      * Function to display the room structure to the player
      */
     public void roomStructure(){
+        System.out.println();
+        System.out.println("The door creaks behind you before the lock metals cling in place. You have entered another room.");
+        CoGasJar cgj = new CoGasJar();
         System.out.print("In the room, there is a wooden desk and a black compartment");
         //a filing cabinet, a metallic drawer, a picture frame hanging on the wall.");
         commands();
@@ -58,7 +57,7 @@ public class EscapeRoom extends Room{
             String feature=input.nextLine();
             feature=feature.toLowerCase();
             if(feature.contains("wooden")&&feature.contains("desk")){
-              //  bd.bookDrawerChoices();
+                bd.bookDrawerChoices();
             }else if(feature.contains("filling")&&feature.contains("cabinet")){
                 //DeskLampDrawer dl=new DeskLampDrawer();
 

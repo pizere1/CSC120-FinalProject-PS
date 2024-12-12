@@ -6,9 +6,11 @@ import javax.sound.sampled.Clip;
 
 public class RoomMapper {
     private HashMap<String, String> roomMap;
+    EscapeRoom es=new EscapeRoom("ER",4,-2,-2,12);
 
     public RoomMapper() {
         roomMap = new HashMap<>();
+    
     }
 
     /**
@@ -26,7 +28,7 @@ public class RoomMapper {
     // Get the room name for a given coordinate
     public String getLocation(int x, int y, int z) {
         String key = generateKey(x, y, z);
-        return roomMap.getOrDefault(key, "Unknown location"); // Return room name or default message
+        return roomMap.getOrDefault(key, "Walls"); // Return room name or default message
     }
 
     public void evaluateLocation(int x, int y, int z, RoomMapper mapper, CellMate cellMate) {
@@ -40,11 +42,12 @@ public class RoomMapper {
     
             case "Alarm Room":
                 System.out.println("An alarm blares loudly as you enter the room!");
-                mapper.playSound();
+                this.playSound();
                 break;
     
-            case "ESCAPE ROOM":
+            case "ER":
                 System.out.println("Congratulations! You've reached the escape room.");
+                es.roomStructure();
                 break;
     
             default:

@@ -85,11 +85,11 @@ public class Prisoner extends People {
      * sends the player to down by subtracting 2 from z axis
      */
     public void goDown(){
-        if (x == 4 && y == 6 && z == -2){
+        if (x == 4 && y == 4 && z == 0){
             this.z -= 2;
             this.lastMove = "down";
         } else {
-            System.out.println("You need to be near the stairs to climb down. ");
+            System.out.println("You need to be near the stairs to go down. ");
         }
         
         //getlocation
@@ -99,8 +99,14 @@ public class Prisoner extends People {
      * sends the player to down by adding 2 to z axis
      */
     public void goUp(){
-        this.z += 2;
-        this.lastMove = "up";
+        if (x == 4 && y == 4 && z == 2){
+            this.z += 2;
+            this.lastMove = "up";
+        } else{
+            System.out.println("You need to be near the stairs to climb up.");
+        }
+       
+       
         //getlocation
     }
 

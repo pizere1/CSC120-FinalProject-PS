@@ -27,6 +27,9 @@ public class UserInterface {
             System.out.println("Enter an age for your player");
             try {
             age = in.nextInt();
+            if(age < 1 || age>120){
+                System.out.print("Try a valid age, bro. ");
+            }
             } catch (Exception e) {
             System.out.println("Invalid Input. Please enter a valid positive integer for age" );
             in.nextLine();
@@ -52,8 +55,8 @@ public class UserInterface {
         CellMate cellMate = new CellMate("RamHari", 14, 621);
         //EscapeRoom escapeRoom = new EscapeRoom("Escape Room", 4 , -2, -2, 9);
 
-        mapper.addRoom("Prison Cell", 0, 0, 0); //1
-        mapper.addRoom("Hallway in front of cell 11", 2, 0, 0);// 2
+        mapper.addRoom("Your Prison Cell", 0, 0, 0); //1
+       // mapper.addRoom("Hallway in front of cell 11", 2, 0, 0);// 2
         mapper.addRoom("Hallway in front of the cellmate at cell 12, End of Hallway on South", 2, -2, 0);//3
         mapper.addRoom("Cellmate's Cell", 0, -2, 0);//4
         mapper.addRoom("Hallway Right to the Bathroom", 2, 2, 0); //5
@@ -100,12 +103,13 @@ public class UserInterface {
                 } else {
                     System.out.println("Please type full command.");
                 }
-               // System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
-            } else if (command.equals("escape")) {
+               System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
+               mapper.evaluateLocation(player.getX(), player.getY(), player.getZ(), mapper, cellMate);
+            } else if (command.contains("escape")) {
                 player.escape();
-            } else if (command.equals("status")) {
+            } else if (command.contains("status")) {
                 showStatus();
-            } else if (command.equals("reverse") || command.equals("undo"))  {
+            } else if (command.contains("reverse") || command.contains("undo"))  {
                 player.goback();
                 mapper.getLocation(player.getX(),player.getY(),player.getZ());
             } else if (command.equals("get location")){
@@ -135,7 +139,7 @@ public class UserInterface {
             } else if (command.equals("open door") || command.equals("open lock")) {
                 theBox.openLock();
                 player.x+=2;
-            } else if (command.equals("help")){
+            } else if (command.contains("help")){
                 System.out.println("All required Commands:\n");
                 player.getHelp();
             }
