@@ -1,5 +1,6 @@
 import java.util.Scanner;
 public class EscapeRoom extends Room{
+    /*Attributes*/
     public String roomName;
     Scanner input = new Scanner(System.in);
     boolean isinsidetheroom;
@@ -9,6 +10,15 @@ public class EscapeRoom extends Room{
     //CactusPotDrawer cpt=new CactusPotDrawer();
    //DeskLampDrawer dl=new DeskLampDrawer();
     //PictureFrameDrawer pf=new PictureFrameDrawer();
+    
+    /**
+     * constructor for escape room
+     * @param roomname take in the room name
+     * @param x the x for location
+     * @param y the y location of the room
+     * @param z the z location of the room
+     * @param roomnumber takes in the room number
+     */
     public EscapeRoom(String roomname, int x, int y, int z, int roomnumber){
         super(roomname, x, y, z, roomnumber);
         this.roomName ="Toxins Store";
@@ -18,18 +28,23 @@ public class EscapeRoom extends Room{
         roomStructure();
     }
     //public void initialize(){}
+     /**
+     * Function to display the room structure to the player
+     */
     public void roomStructure(){
         System.out.print("In the room, there is a wooden desk and a black compartment");
         //a filing cabinet, a metallic drawer, a picture frame hanging on the wall.");
         commands();
     }
+    /**
+     * Overriden function to exit the room which does not allow a player to exit the escape room
+     */
     public void exitRoom(Prisoner p){
         System.out.println("You cannot exit this room. The lock blocks from outside.");
     }
-    
-    
-    
-    
+    /**
+     * The function to hand the room commands
+     */    
     public void commands(){
         //System.out.println();
         System.out.println(" Do you want to go to any of the features?");
