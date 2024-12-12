@@ -1,12 +1,17 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class BookDrawer extends Drawer {
+    /**
+    *Attributes 
+    */
     Scanner scanner = new Scanner(System.in);
     String item1, item2, item3, item4, item5,item6;//item7;
     boolean isbookopen;
     String chosenItem;
     ArrayList<String>items=new ArrayList<>();
-
+/**
+     *Constructor for the book drawer classes which initializes its components
+     */
     public BookDrawer() {
         super();
         this.item1 = "rusty nail";
@@ -25,7 +30,9 @@ public class BookDrawer extends Drawer {
         //items.add(item7);
         //don't call anyfunction in here
     }
-
+/**
+     *the function to handle the user's interaction with the drawer
+     */
     public void bookDrawerChoices(){
         System.out.println("You are in front of the Drawer with a book on the top. What do you want to do?");
         String command=scanner.nextLine();
@@ -83,7 +90,9 @@ public class BookDrawer extends Drawer {
             bookDrawerChoices();
         }
     }
-
+/**
+     * Function to open the drawer
+     */
     public void openDrawer() {
         System.out.print("Opening the drawer...");
         System.out.println("The top drawer is opened. You see these items");
@@ -92,7 +101,9 @@ public class BookDrawer extends Drawer {
         }
         drawerChoices();
     }
-
+/**
+     * function to handle the drawer's interaction with the drawer itself
+     */
     public void drawerChoices() {
         System.out.println("Do you want to choose an item or leave?");
         String choice=scanner.nextLine();
@@ -117,7 +128,10 @@ public class BookDrawer extends Drawer {
                 drawerChoices();
             }
     }
-
+ /**
+     * The funtion for grabbing an object, 
+     * @param item takes in the parameter for what the prisoner wants to take
+     */
     private void grab(String item){
         pickedItem=item.toLowerCase();
         for(String i:items) {
@@ -132,6 +146,10 @@ public class BookDrawer extends Drawer {
             }
         }
     }
+    /**
+     * function that identifies the chosen item to the player
+     * @param item takes in the name of the item
+     */
     public void chosenOptions(String item){
         //if(items.equals(this.items.get(0)))
         if(item.equals("rusty nail")) {
@@ -192,6 +210,10 @@ public class BookDrawer extends Drawer {
             drawerChoices();
         }
     }
+    /**
+     * the function to identify
+     * @param item takes in the chosen item
+     */
     public void choseOptions(String item){
         //if(items.equals(this.items.get(0)))
         if(item.contains("rusty nail")) {
@@ -252,6 +274,10 @@ public class BookDrawer extends Drawer {
             drawerChoices();
         }
     }
+    /**
+     * Function to handle the user's interaction with the chosen item
+     * @param item takes in the chosen item
+     */
     public void playerchoices(String theItem) {
         System.out.println("Do you want to put "+theItem +" back in or take it with you. ");
         String choice=scanner.nextLine();
@@ -276,6 +302,10 @@ public class BookDrawer extends Drawer {
             playerchoices(theItem);
         }
     }
+    /**
+     * function for putting back the chosen it
+     * @param item takes in the name of the item
+     */
     public void putback(String theItem) {
         //for(String t:items) {
             //if(t.contains(theItem)) {
@@ -286,6 +316,9 @@ public class BookDrawer extends Drawer {
 //            }
         //}
     }
+    /**
+     * Function to manage the user's final action after choosing an item or puuting it back
+     */
     public void finalchoices(){
         System.out.println("Do you want to pick another item or close the drawer.");
         String command=scanner.nextLine();
@@ -303,4 +336,3 @@ public class BookDrawer extends Drawer {
         }
     }
 }
-=
