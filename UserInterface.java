@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class UserInterface {
 
     public static Prisoner prisoner;
-    
+
 
     private static void showStatus() {
         System.out.println("\n=== Prisoner Status ===");
@@ -113,7 +113,7 @@ public class UserInterface {
             } else if (command.equals("speak")){
                 if (player.getX() == 2 && player.getY() == -2 && player.getZ() == 0) {
                     cellMate.cellMateInfo();
-                    cellMate.speak();
+                    cellMate.speak(player);
                     mapper.playSound();
                 } else {
                     System.out.println("There's no one here to speak to.");

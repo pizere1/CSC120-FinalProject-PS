@@ -33,14 +33,14 @@ public class CellMate extends People { //prisoner number - 621
 /**
     * Function for the cellmate to commuicate to the prisoner
     */
-    public void speak(){
-        UserInterface ui = new UserInterface();
-        Prisoner player = new Prisoner();
+    public void speak(Prisoner player){
         if (player.getX() == 2 && player.getY() == -2 && player.getZ() == 0){
         System.out.println("They say freedom is buried deep, hidden where the air grows cold and the walls weep. Find the path that leads you down a level across where the alarms sleep.\n"+ 
         "Remember me when you get there and you’ll find your way out.");
+        } else {
+                System.out.println("There's no one here to speak to.");
+            }
         }
-    }
 
     public static void main(String[] args) {
        
