@@ -12,6 +12,15 @@ public class Drawer {
     public ArrayList<String>items;
     public Drawer() {
     }
+    /***
+     * constructor for the drawer class
+     * @param item1, takes in the first item
+     * @param item2 takes in the second item
+     * @param item3 takes in the third item
+     * @param item4 takes in the fourth item
+     * @param item5 takes in the fifth item
+     * @param item6 takes in the fifth item
+     */
     public Drawer(String item1, String item2, String item3,String item4, String item5, String item6) {
         items=new ArrayList<>();
         items.add(item1);
@@ -22,7 +31,9 @@ public class Drawer {
         items.add(item6);
 
     }
-
+    /** 
+     *function for opening the drawer
+     */
     public void openDrawer() {
         System.out.print("Opening the drawer...");
         System.out.println("The top drawer is opened. You see these items");
@@ -31,6 +42,9 @@ public class Drawer {
         }
         drawerChoices();
     }
+     /** 
+     * Function to manager the player's choices regarding the drawer
+     */
     public void drawerChoices() {
         System.out.println("Do you want to choose an item or leave?");
         String choice=scanner.nextLine();
