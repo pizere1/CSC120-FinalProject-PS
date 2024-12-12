@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class UserInterface {
 
     public static Prisoner prisoner;
+    
 
     private static void showStatus() {
         System.out.println("\n=== Prisoner Status ===");
@@ -71,9 +72,8 @@ public class UserInterface {
         System.out.println( "\n You wakeup inside a gray room. You have number "+ prisonerNumber +" written on your jumpsuit.\n You remember nothing about who you are or how you reached inside this PRISON. \n"+  
         "Your mind is blank as the walls of the room. You are less safe inside these walls than anywhere else.\n" );
        System.out.println(" You need to figure out an escape. You look around to find a door infront of you and a box in your room.\n What is your next move?");
-
+   
         while (true){
-           // showStatus();
 
             System.out.print("\nEnter command: ");
             String command = in.nextLine().toLowerCase().trim();
@@ -81,34 +81,26 @@ public class UserInterface {
             if (command.equals("quit")) {
                 System.out.println("Quitting game...");
                 break;
-            } else if (command.equals("move east")) {
-                player.goEast();
-                System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
-            } else if (command.equals("move west")) {
-                player.goWest();
-                System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
-            } else if (command.equals("move north")) {
-                player.goNorth();
-                System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
-            } else if (command.equals("move south")) {
-                player.goSouth();
-                System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
-            } else if (command.equals("move up")) {
-                player.goUp();
-                System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
-            } else if (command.equals("move down")) {
-                if (player.getX() == 4 && player.getY() == 6 && player.getZ() == -2) {
+            } else if (command.contains("move") && command.contains("go")) {
+                if (command.contains("east")){
+                    player.goEast();
+                } else if (command.contains ("west")){
+                    player.goWest();
+                } else if (command.contains("north")){
+                    player.goNorth();
+                } else if (command.contains("south")){
+                    player.goSouth();
+                } else if (command.contains("up")){
+                    player.goUp();
+                } else if (command.contains("down")){
                     player.goDown();
-                } else {
-                    System.out.println("Buddy, you're not iron man to break the floors. Go find stairs.");
                 }
                 System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
             } else if (command.equals("escape")) {
                 player.escape();
-                System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
             } else if (command.equals("status")) {
                 showStatus();
-            } else if (command.equals("reverse")) {
+            } else if (command.equals("reverse") || command.equals("undo"))  {
                 player.goback();
                 mapper.getLocation(player.getX(),player.getY(),player.getZ());
             } else if (command.equals("get location")){
@@ -116,8 +108,6 @@ public class UserInterface {
                 System.out.println("you're at: "+location);
             } else if (command.equals("look around")){
                 mapper.lookAround(player.getX(), player.getY(), player.getZ());
-            } else if (command.contains("move")&&!command.contains("east")&&!command.contains("west")&&!command.contains("north")&&!command.contains("south")&&!command.contains("up")&&!command.contains("down")){
-                System.out.println("Incomplete command.");
             } else if (command.equals("open box") ){
                 theBox.openBoX();
             } else if (command.equals("speak")){
@@ -140,12 +130,9 @@ public class UserInterface {
                 System.out.println("Unknown command. Try again.");
             }
 
-            // if (player.getX() == 4 && player.getY() == -2 && player.getZ() == -2){
-            //     escapeRoom.roomStructure();
-            // }
 
+        }
         }
     }
 
-}
 

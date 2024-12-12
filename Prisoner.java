@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Prisoner extends People {
     protected String crime;
@@ -30,6 +29,7 @@ public class Prisoner extends People {
         this.z = 0;
         this.lastMove = "";
         this.status = status;
+
     }
     //methods
 
@@ -84,8 +84,13 @@ public class Prisoner extends People {
      * sends the player to down by subtracting 2 from z axis
      */
     public void goDown(){
-        this.z -= 2;
-        this.lastMove = "down";
+        if (x == 4 && y == 6 && z == -2){
+            this.z -= 2;
+            this.lastMove = "down";
+        } else {
+            System.out.println("You need to be near the stairs to climb down. ");
+        }
+        
         //getlocation
     }
 
@@ -152,8 +157,12 @@ public class Prisoner extends People {
         this.z = z;
     }
 
+    public void getHelp(){
+
+    }
+
     public static void main(String[] args) {
-        ArrayList commands = new ArrayList<>();
+        String commands[] = {"move 'directions' (e.g. move east, move up, etc.)","reverse", "help", "quit"};
     }
 
 

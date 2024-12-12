@@ -104,8 +104,8 @@ public class BookDrawer extends Drawer {
             }
             String pickedItem=scanner.nextLine();
             choseOptions(pickedItem);//what if they say I choose
-            //grab(pickedItem);
-           // grab(chosenItem);
+            grab(pickedItem);
+            grab(chosenItem);
         } else if(choice.contains("leave")) {
             System.out.println("You didn't pick an item. You reclosed the drawer. You are still in the locked room and " +
                     "the time is going down.");

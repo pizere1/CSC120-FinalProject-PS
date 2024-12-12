@@ -18,6 +18,7 @@ public class TheBox {
     String key="key";
     String rope="rope";
     String pickedItem;
+    boolean doorUnlocked;
     public ArrayList<String> boxContent=new ArrayList<>();
     private void boxContent(){
         boxContent.add(pocketKnife);

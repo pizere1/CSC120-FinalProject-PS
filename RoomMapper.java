@@ -23,11 +23,6 @@ public class RoomMapper {
         roomMap.put(key, roomName);
     }
 
-    // public void addHallway(String description, int x, int y, int z){
-        // String key = generateKey(x, y, z);
-        // roomMap.put(key, description);
-    // }
-
     // Get the room name for a given coordinate
     public String getLocation(int x, int y, int z) {
         String key = generateKey(x, y, z);
@@ -89,11 +84,7 @@ public class RoomMapper {
         mapper.addRoom("Alarm Room", 0, -2, -2);//14
         mapper.addRoom("ESCAPE ROOM", 4, -2, -2);//15
 
-        
 
-
-
-        // Test mapping
         System.out.println(mapper.getLocation(0, 0, 0)); // Output: Prison Cell
     }
 }

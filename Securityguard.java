@@ -16,4 +16,3 @@ public class Securityguard extends People {
         System.out.println(operation);
     }
 }
-    //capture
