@@ -55,22 +55,30 @@ public class UserInterface {
         CellMate cellMate = new CellMate("RamHari", 14, 621);
         //EscapeRoom escapeRoom = new EscapeRoom("Escape Room", 4 , -2, -2, 9);
 
+        mapper.addRoom("Cellmate's Cell", 0, -2, 0);//1
+        mapper.addRoom("End of Hallway on South", 2, -2, 0);//2
+        mapper.addRoom("Bathroom", 4, -2, 0); //3
+
         mapper.addRoom("Your Prison Cell", 0, 0, 0); //1
-       // mapper.addRoom("Hallway in front of cell 11", 2, 0, 0);// 2
-        mapper.addRoom("Hallway in front of the cellmate at cell 12, End of Hallway on South", 2, -2, 0);//3
-        mapper.addRoom("Cellmate's Cell", 0, -2, 0);//4
-        mapper.addRoom("Hallway Right to the Bathroom", 2, 2, 0); //5
-        mapper.addRoom("Bathroom", 4, 2, 0); //6
-        mapper.addRoom("End of Hallway on North", 2, 4, 0); //7
-        mapper.addRoom("Window on East End", 0, 4, 0);//8
-        mapper.addRoom("Start of The Stair", 4, 4, 0);//9
-        mapper.addRoom("Downstairs Lower Level- end of the stairs", 4, 4, -2);//10
-        mapper.addRoom(" Hallway- Lower level, infront of the stairs ", 2, 4, -2);//11
-        mapper.addRoom("Hallway at the Lower Level", 2, 0, -2);//12
-        mapper.addRoom("Suspicious Passage Way", 4, 0, -2);//13
+        mapper.addRoom("Hallway in front of cell 11", 2, 0, 0);// 2
+        mapper.addRoom("Open Space", 4,0, 0);
+
+        mapper.addRoom("Window on East End", 0, 2, 0);//8
+        mapper.addRoom("Main Door, End of Hallway on North", 2, 2, 0); //7
+        mapper.addRoom("Ground Floor- Stairs", 4, 2, 0);//9
+
+
+        mapper.addRoom("Basement stairs", 4, 2, -2);//10
+        mapper.addRoom("Middle of the Hallway in north end", 2, 4, -2);//11
+        mapper.addRoom("Hallway of East End", 0, 2, -2);
+
+        mapper.addRoom("Open Space", 4, 0, -2);
+        mapper.addRoom("Hallway", 2, 0, -2);//10
+        mapper.addRoom("Jailer's Office", 0, 0, -2);
+
         mapper.addRoom("Alarm Room", 0, -2, -2);//14
-        mapper.addRoom("ER", 4, -2, -2);//15
         mapper.addRoom("Hallway between ER and AR", 2, -2, -2);
+        mapper.addRoom("ER", 4, -2, -2);//15
 
 
         System.out.println( "\n You wakeup inside a gray room. You have number "+ prisonerNumber +" written on your jumpsuit.\n You remember nothing about who you are or how you reached inside this PRISON. \n"+  
@@ -105,8 +113,8 @@ public class UserInterface {
                 }
                System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
                mapper.evaluateLocation(player.getX(), player.getY(), player.getZ(), mapper, cellMate);
-            } else if (command.contains("escape")) {
-                player.escape();
+           // } else if (command.contains("escape")) {
+               // player.escape();
             } else if (command.contains("status")) {
                 showStatus();
             } else if (command.contains("reverse") || command.contains("undo"))  {

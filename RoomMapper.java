@@ -49,9 +49,12 @@ public class RoomMapper {
                 System.out.println("Congratulations! You've reached the escape room.");
                 es.roomStructure();
                 break;
+
+            case "Walls":
+                System.out.println("");
     
             default:
-                System.out.println("You are now in: " + location);
+                System.out.println("");
                 break;
         }
     }    

@@ -4,6 +4,12 @@ public class Prisoner extends People {
     protected String crime;
     private int prisonerNumber;
     public int x;
+    int maxX;
+    int minX;
+    int maxY;
+    int minY;
+    int maxZ;
+    int minZ;
     public int y;
     public int z;
     private String lastMove;
@@ -28,6 +34,15 @@ public class Prisoner extends People {
         this.x = 0;
         this.y = 0;
         this.z = 0;
+        this.maxX = 4;
+        this.minX = 0;
+        this.maxY = 2;
+        this.minY = -2;
+        this.maxZ = 0;
+        this.minZ = -2;
+
+
+
         this.lastMove = "";
         this.status = status;
 
@@ -46,9 +61,12 @@ public class Prisoner extends People {
      * sends the player to east direction by subtracting 2 value to x axis.
      */
      public void goEast(){
-        this.x -= 2;
-        this.lastMove = "east";
-        //getlocation
+        if (this.x - 2 >= minX) { // Check if within bounds
+            this.x -= 2;
+            this.lastMove = "east";
+        } else {
+            System.out.println("You can't move east. There's a wall.");
+        }
     }
 
     /**
@@ -56,19 +74,24 @@ public class Prisoner extends People {
      */
 
     public void goWest(){
-        this.x += 2;
-        this.lastMove = "west";
-        //getlocation
+        if (this.x + 2 <= maxX) { // Check if within bounds
+            this.x += 2;
+            this.lastMove = "west";
+        } else {
+            System.out.println("You can't move west. There's a wall or locked door.");
+        }
     }
-
     /**
      * sends the player to west direction by adding 2 value to x axis
      */
 
     public void goNorth(){
-        this.y+= 2;
-        this.lastMove = "north";
-        //getlocation
+        if (this.y + 2 <= maxY) { // Check if within bounds
+            this.y += 2;
+            this.lastMove = "north";
+        } else {
+            System.out.println("You can't move north. There's a wall or locked door.");
+        }
     }
 
     /**
@@ -76,8 +99,12 @@ public class Prisoner extends People {
      */
 
     public void goSouth(){
-        this.y -=2;
-        this.lastMove = "south";
+        if (this.y-2 >= minY){
+            this.y -=2;
+         this.lastMove = "south";
+        } else{
+            System.out.println("You can't move south. There's wall or locked door");
+        }
         //getlocation
     }
 
@@ -85,11 +112,15 @@ public class Prisoner extends People {
      * sends the player to down by subtracting 2 from z axis
      */
     public void goDown(){
-        if (x == 4 && y == 4 && z == 0){
-            this.z -= 2;
-            this.lastMove = "down";
+        if (this.z - 2 >= minZ){
+            if (x == 4 && y == 2 && z == 0){
+                this.z -= 2;
+                this.lastMove = "down";
+            } else {
+                System.out.println("You need to be near the stairs to go down. ");
+            }           
         } else {
-            System.out.println("You need to be near the stairs to go down. ");
+            System.out.println("you can't go beyond this floor.");
         }
         
         //getlocation
@@ -99,29 +130,25 @@ public class Prisoner extends People {
      * sends the player to down by adding 2 to z axis
      */
     public void goUp(){
-        if (x == 4 && y == 4 && z == 2){
-            this.z += 2;
-            this.lastMove = "up";
-        } else{
-            System.out.println("You need to be near the stairs to climb up.");
+        if (this.z + 2 <= maxZ){
+            if (x == 4 && y == 2 && z == -2){
+                this.z += 2;
+                this.lastMove = "up";
+            } else{
+                System.out.println("You need to be near the stairs to climb up.");
+            }
+        } else {
+            System.out.println("you can't go beyond this floor.");
         }
        
        
         //getlocation
     }
 
-    public void escape(){
-        //stil to think ??????
-    }
-
     /**
      * reverses the last move
      */
-
-     public void climb(){
-        this.z +=2;
-        this.lastMove = "climb";
-     }
+       
 
     public void goback() {
         if (this.lastMove.equals("east")) {
