@@ -18,6 +18,7 @@ public class TheBox {
     String key="key";
     String rope="rope";
     String pickedItem;
+    boolean itemInHand;
     boolean doorUnlocked;
     public ArrayList<String> boxContent=new ArrayList<>();
     private void boxContent(){
@@ -30,9 +31,7 @@ public class TheBox {
         System.out.println("There is a box in front of you.");
         userInput = scanner.nextLine();
         userInput = userInput.toLowerCase();
-        if(userInput.contains("open")&&(userInput.contains("box"))){
-            openBoX();
-        } else if(userInput.contains("open it")){
+        if(userInput.contains("open")){
             openBoX();
         } else if (userInput.contains("open")&&!(userInput.contains("box")) && !(userInput.contains("open it"))){
             System.out.println("You used 'open' in a way I don't understand.");
@@ -99,6 +98,7 @@ public class TheBox {
         System.out.println("Pick one item");
         String pickedItem=sc.nextLine();
         grab(pickedItem);
+        itemInHand = true;
     }
     private void grab(String item){
         pickedItem=item.toLowerCase();

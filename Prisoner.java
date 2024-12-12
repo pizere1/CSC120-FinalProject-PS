@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class Prisoner extends People {
     protected String crime;
@@ -7,7 +8,7 @@ public class Prisoner extends People {
     public int z;
     private String lastMove;
     protected Status status;
-    public String[] commands;
+    public String[] allCommands;
 
 
     /**
@@ -158,11 +159,13 @@ public class Prisoner extends People {
     }
 
     public void getHelp(){
+        String arrayAsString = Arrays.toString(allCommands);
+        System.out.println(arrayAsString); 
 
     }
 
     public static void main(String[] args) {
-        String commands[] = {"move 'directions' (e.g. move east, move up, etc.)","reverse", "help", "quit"};
+        String allCommands[] = {"move 'directions' (e.g. move east, move up, etc.)","reverse", "help", "quit"};
     }
 
 

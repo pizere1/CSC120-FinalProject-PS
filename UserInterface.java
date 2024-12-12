@@ -66,7 +66,8 @@ public class UserInterface {
         mapper.addRoom("Hallway at the Lower Level", 2, 0, -2);//12
         mapper.addRoom("Suspicious Passage Way", 4, 0, -2);//13
         mapper.addRoom("Alarm Room", 0, -2, -2);//14
-        mapper.addRoom("ESCAPE ROOM", 4, -2, -2);//15
+        mapper.addRoom("ER", 4, -2, -2);//15
+        mapper.addRoom("Hallway between ER and AR", 2, -2, -2);
 
 
         System.out.println( "\n You wakeup inside a gray room. You have number "+ prisonerNumber +" written on your jumpsuit.\n You remember nothing about who you are or how you reached inside this PRISON. \n"+  
@@ -81,7 +82,7 @@ public class UserInterface {
             if (command.equals("quit")) {
                 System.out.println("Quitting game...");
                 break;
-            } else if (command.contains("move") && command.contains("go")) {
+            } else if (command.contains("move") || command.contains("go")) {
                 if (command.contains("east")){
                     player.goEast();
                 } else if (command.contains ("west")){
@@ -94,8 +95,12 @@ public class UserInterface {
                     player.goUp();
                 } else if (command.contains("down")){
                     player.goDown();
+                } else if (command.contains("door")){
+                    theBox.goToDoor();
+                } else {
+                    System.out.println("Please type full command.");
                 }
-                System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
+               // System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
             } else if (command.equals("escape")) {
                 player.escape();
             } else if (command.equals("status")) {
@@ -108,23 +113,31 @@ public class UserInterface {
                 System.out.println("you're at: "+location);
             } else if (command.equals("look around")){
                 mapper.lookAround(player.getX(), player.getY(), player.getZ());
-            } else if (command.equals("open box") ){
-                theBox.openBoX();
+            } else if (command.contains("open") ){
+                if (command.contains("box")){
+                    theBox.openBoX();
+                } else if (command.contains("door") || command.contains("lock")){
+                    theBox.openLock();
+                    player.x+=2;
+                    System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
+                } else {
+                    System.out.println("Please type full command.");
+                }             
             } else if (command.equals("speak")){
                 if (player.getX() == 2 && player.getY() == -2 && player.getZ() == 0) {
                     cellMate.cellMateInfo();
                     cellMate.speak(player);
-                    mapper.playSound();
                 } else {
                     System.out.println("There's no one here to speak to.");
                 }
             } else if (command.equals("go to door")){
                 theBox.goToDoor();
-            } else if (command.equals("open door")) {
+            } else if (command.equals("open door") || command.equals("open lock")) {
                 theBox.openLock();
                 player.x+=2;
             } else if (command.equals("help")){
-                System.out.println("All required Commands");
+                System.out.println("All required Commands:\n");
+                player.getHelp();
             }
             else {
                 System.out.println("Unknown command. Try again.");

@@ -29,6 +29,30 @@ public class RoomMapper {
         return roomMap.getOrDefault(key, "Unknown location"); // Return room name or default message
     }
 
+    public void evaluateLocation(int x, int y, int z, RoomMapper mapper, CellMate cellMate) {
+        String location = mapper.getLocation(x, y, z);
+    
+        switch (location) {
+            case "Hallway in front of the cellmate at cell 12, End of Hallway on South":
+                System.out.println("You see your cellmate in the cell nearby.");
+                System.out.println("You can type 'speak' to talk to him.");
+                break;
+    
+            case "Alarm Room":
+                System.out.println("An alarm blares loudly as you enter the room!");
+                mapper.playSound();
+                break;
+    
+            case "ESCAPE ROOM":
+                System.out.println("Congratulations! You've reached the escape room.");
+                break;
+    
+            default:
+                System.out.println("You are now in: " + location);
+                break;
+        }
+    }    
+
     public void lookAround(int x, int y, int z){
         System.out.println("\n Nearby Locations:\n");
         System.out.println("North: " + getLocation(x, y + 2, z));
