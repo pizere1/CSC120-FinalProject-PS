@@ -19,12 +19,16 @@ public class TheBox {
     String rope="rope";
     String pickedItem;
     boolean itemInHand;
-    boolean doorUnlocked;
+    boolean doorUnlocked = false;
     public ArrayList<String> boxContent=new ArrayList<>();
     private void boxContent(){
         boxContent.add(pocketKnife);
         boxContent.add(key);
         boxContent.add(rope);
+    }
+
+    public boolean isDoorUnlocked(){
+        return doorUnlocked;
     }
 
     public void boxChoices(){
@@ -63,7 +67,7 @@ public class TheBox {
         if (itemInHand == true){
             if (pickedItem.equals("pocketknife")){
                 System.out.println("Door Unlocked.");
-                outsideCell();
+                doorUnlocked = true;
         }  else {
             System.out.println("You picked the wrong item. Try again");
             openBoX();
@@ -72,10 +76,7 @@ public class TheBox {
         }
     }
 
-    public void outsideCell(){
-        System.out.println("You're outside cell no: 012. Look to see what's around.");
 
-    }
 
     public void openBoX(){
         if(this.wasOpened==true){

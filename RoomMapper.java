@@ -40,7 +40,7 @@ public class RoomMapper {
                 System.out.println("You can type 'speak' to talk to him.");
                 break;
     
-            case "Alarm Room":
+            case "AR":
                 System.out.println("An alarm blares loudly as you enter the room!");
                 this.playSound();
                 break;

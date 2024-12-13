@@ -76,7 +76,7 @@ public class UserInterface {
         mapper.addRoom("Hallway", 2, 0, -2);//10
         mapper.addRoom("Jailer's Office", 0, 0, -2);
 
-        mapper.addRoom("Alarm Room", 0, -2, -2);//14
+        mapper.addRoom("AR", 0, -2, -2);//14
         mapper.addRoom("Hallway between ER and AR", 2, -2, -2);
         mapper.addRoom("ER", 4, -2, -2);//15
 
@@ -86,7 +86,7 @@ public class UserInterface {
        System.out.println(" You need to figure out an escape. You look around to find a door infront of you and a box in your room.\n What is your next move?");
    
         while (true){
-
+            
             System.out.print("\nEnter command: ");
             String command = in.nextLine().toLowerCase().trim();
 
@@ -94,6 +94,10 @@ public class UserInterface {
                 System.out.println("Quitting game...");
                 break;
             } else if (command.contains("move") || command.contains("go")) {
+                if (!theBox.isDoorUnlocked()){
+                    System.out.println("The door is locked. You cannot move until you unlock the door.");
+                    continue;
+                }
                 if (command.contains("east")){
                     player.goEast();
                 } else if (command.contains ("west")){
@@ -125,13 +129,18 @@ public class UserInterface {
                 System.out.println("you're at: "+location);
             } else if (command.equals("look around")){
                 mapper.lookAround(player.getX(), player.getY(), player.getZ());
-            } else if (command.contains("open") ){
+            } else if (command.contains("open") | command.contains("unlock") ){
                 if (command.contains("box")){
                     theBox.openBoX();
                 } else if (command.contains("door") || command.contains("lock")){
-                    theBox.openLock();
-                    player.x+=2;
-                    System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
+                    if (!theBox.isDoorUnlocked()){
+                        theBox.openLock();
+                        if (theBox.isDoorUnlocked()){
+                            player.x +=2;
+                            System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
+                        }
+
+                    }           
                 } else {
                     System.out.println("Please type full command.");
                 }             
