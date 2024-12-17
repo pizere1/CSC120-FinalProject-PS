@@ -1,5 +1,4 @@
-
-import java.net.URL;
+import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -28,39 +27,16 @@ public class AlarmRoom extends Room {
 /*
 *The function to play the alarm sounds
 */
-;
-
-
-
-public void playSound() {
-    try {
-        // Use getResource to load the file from the classpath
-        URL soundFile = getClass().getClassLoader().getResource("alarm-sound.wav");
-
-        if (soundFile == null) {
-            System.out.println("Sound file not found!");
-            return;
+    public void playSound() {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("/Users/sdumre/Downloads/mixkit-facility-alarm-sound-999.wav").getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch(Exception ex) {
+            System.out.println("Error with playing sound.");
+            ex.printStackTrace();
         }
-
-        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-        Clip clip = AudioSystem.getClip();
-        clip.open(audioInputStream);
-        clip.start();
-    } catch (Exception ex) {
-        System.out.println("Error playing sound: " + ex.getMessage());
     }
-}
-
-    // public void playSound() {
-        // try {
-            // AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("/Users/sdumre/Downloads/mixkit-facility-alarm-sound-999.wav").getAbsoluteFile());
-            // Clip clip = AudioSystem.getClip();
-            // clip.open(audioInputStream);
-            // clip.start();
-        // } catch(Exception ex) {
-            // System.out.println("Error with playing sound.");
-            // ex.printStackTrace();
-        // }
-    // }
 
 }
