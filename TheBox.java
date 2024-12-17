@@ -1,20 +1,20 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class TheBox {
-    
+
     public int prisonerNumber;
     public TheBox(int prisonerNumber){
         this.prisonerNumber = prisonerNumber;
         boxContent();
     }
-    
+
     Scanner scanner = new Scanner(System.in);
     String userInput;
     Scanner sc = new Scanner(System.in);
     boolean isCracked = false;
     boolean isOpen=false;
     boolean wasOpened = false;
-    String pocketKnife="pocketknife";
+    String pocketKnife="pocket knife";
     String key="key";
     String rope="rope";
     String pickedItem;
@@ -65,13 +65,13 @@ public class TheBox {
 
     public void openLock(){
         if (itemInHand == true){
-            if (pickedItem.equals("pocketknife")){
+            if (pickedItem.contains("pocket knife")){
                 System.out.println("Door Unlocked.");
                 doorUnlocked = true;
-        }  else {
-            System.out.println("You picked the wrong item. Try again");
-            openBoX();
-        } } else {
+            }  else {
+                System.out.println("You picked the wrong item. Try again");
+                openBoX();
+            } } else {
             System.out.println(" You need to find an item to unlock the door. Consider everything around you.");
         }
     }
@@ -80,23 +80,26 @@ public class TheBox {
 
     public void openBoX(){
         if(this.wasOpened==true){
-           System.out.println("Reopening the box.");
-           boxContent.remove(pickedItem);
-           boxDisplay();
-        } else{
-        System.out.println("To open the box you need to enter its code. Your hint lies within the choices you made. The ripple is protected by a triple.");
-        int code=sc.nextInt();
-        sc.nextLine();
-        while (!codeBreaking(code)){
-            System.out.println("Please try again");
-            code=sc.nextInt();
-            codeBreaking(code);
-        }
-        if(this.isCracked==true){
-            this.wasOpened=true;
-            System.out.println("You have opened the box");
+            System.out.println("Reopening the box.");
+            boxContent.remove(pickedItem);
             boxDisplay();
-        }
+        } else{
+            System.out.println("To open the box you need to enter its code. Your hint lies within the choices you made. The ripple is protected by a triple.");
+            try {
+                int code = sc.nextInt();
+                while (!codeBreaking(code)){
+                    System.out.println("Please try again");
+                    openBoX();
+                }
+                sc.nextLine();
+                boxDisplay();
+            } catch (Exception e) {
+                System.out.println("Invalid Input. Please enter a valid integer" );
+                sc.nextLine();
+                openBoX();
+            }
+//            sc.nextLine();
+//            boxDisplay();
         }
     }
     private void boxDisplay(){
@@ -105,14 +108,19 @@ public class TheBox {
         System.out.println("Pick one item");
         String pickedItem=sc.nextLine();
         grab(pickedItem);
-        itemInHand = true;
     }
     private void grab(String item){
         pickedItem=item.toLowerCase();
         if(boxContent.contains(pickedItem)){
             System.out.println("You have taken the " + pickedItem);
             System.out.println("The box got closed again");
-        } else{
+            itemInHand = true;
+        }  else if(item.contains("knife")){
+            pickedItem="pocket knife";
+            System.out.println("You have taken the knife");
+            System.out.println("The box got closed again");
+            itemInHand = true;
+        }else{
             System.out.println("There is no "+ pickedItem +" in the box. Choose between the three.");
             boxDisplay();
         }
