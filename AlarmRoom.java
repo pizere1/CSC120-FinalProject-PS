@@ -1,4 +1,4 @@
-import java.io.File;
+import java.io.FileNotFoundException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -27,16 +27,40 @@ public class AlarmRoom extends Room {
 /*
 *The function to play the alarm sounds
 */
-    public void playSound() {
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("/Users/sdumre/Downloads/mixkit-facility-alarm-sound-999.wav").getAbsoluteFile());
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-        } catch(Exception ex) {
-            System.out.println("Error with playing sound.");
-            ex.printStackTrace();
+
+public void playSound() {
+    try {
+        // Load the sound file from the resources folder
+        java.net.URL audioFileURL = getClass().getClassLoader()
+                .getResource("mixkit-facility-alarm-sound-999.wav");
+
+        if (audioFileURL == null) {
+            throw new FileNotFoundException("Audio file not found in resources folder.");
         }
+
+        // Create an AudioInputStream from the URL
+        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioFileURL);
+
+        // Open and play the sound
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioInputStream);
+        clip.start();
+    } catch (Exception ex) {
+        System.out.println("Error with playing sound.");
+        ex.printStackTrace();
     }
+}
+
+    // public void playSound() {
+        // try {
+            // AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("/Users/sdumre/Downloads/mixkit-facility-alarm-sound-999.wav").getAbsoluteFile());
+            // Clip clip = AudioSystem.getClip();
+            // clip.open(audioInputStream);
+            // clip.start();
+        // } catch(Exception ex) {
+            // System.out.println("Error with playing sound.");
+            // ex.printStackTrace();
+        // }
+    // }
 
 }

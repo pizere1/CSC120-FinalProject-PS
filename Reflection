@@ -2,21 +2,6 @@ Reflection:
 We had an amazing time making this game. We were very excited when we brainstormed the idea of potential "Prison Break" for our
 game. 
 
-Our Intial Design: 
-A Prison in an isolated Island. The prison's building is at the centre of the island. The player starts from his cell, finds his
-way out of the cell, and the prison by finging clues and unlocking the tunnel. He needs to escape the security guards who are scattered throughout the island, interact with surrounding things like trees, animals, etc. and find a boat. Unlock the boat and then sail away to win. 
-Possible Classes: 
-Room- Prisoner cell, Some other prisoners' cell, etc,
-Building- Prison
-Island Map
-People- Player, Cellmate, Security Guards
-Ship/Boat 
-Trees
-Other animal/birds
-NEW THING we were plannning to add: Timer of around 3minutes at some point to pressurize the player into escaping which may or maynot have to run depending on the player
+Our Overall Approach was to divide the work on the basis of claases between us and meet at a fixed interval to merge and discuss the changes, provide feedback to each other. We overestimated out potential intially; however, as we delved deeper we understood how to utilize out approach better and figured it out together.  The main thing I learned is collaboration in Programming and how it can be both difficult to integrate two people's thought for the same thing abut as well as working together makes it far more efficient. We like our game a lot. The only thing we would change is make the security guard more active, which we couldn't achieve due to time constraints. We would also have reduced the scale of our project intially. If we will we be given unlimited time, we would actually implement this design with our intial design of an island and people and objects that the player could interact with and make the map more clear. The most helpful advice was given to us by multiple users whom we asked to play our game. They fed unexpected commands that only had a few words right, so we opted to use contains instead of "equals" to take user command. To our past selfs, we would suggest to divide to plan the time for classes and leave extra time for debugging and confront the issues that we might have and also lessen our expectations. 
 
-
-Our Final Design: 
-A prison with 2 floors (first floor and a basement).  The prison starts from his cell, but needs to figure out some clues and pick righ items to unlock his door to go out. (Change). He gets a potential clue from his cellmate if he moves in that direction. If not, he can move throughout the building. A few places like The jailer room and AR interact with the player. He has to find his way to the escape room (very obvious), where he will need to go through some items lying around the room and work with some clues to find an item that lets him to the underground tunnel and eventually win. 
-Changes: Everything outside of the building were eliminated due to time constriction and some extra elements and interactions were added within the building to keep the game interesting. 
-
+Both Peace and Swikriti had an amaxing time working with each other, we worked back and forth for our divided tasks as well and provided all the support (moral and technical), and would love to work together in the future.
