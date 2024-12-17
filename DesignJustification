@@ -26,8 +26,7 @@ the escape room (very obvious), where he will need to go through some items lyin
 an item that lets him to the underground tunnel and eventually win. 
 
 Changes from Intial design:
-Everything outside of the building were eliminated due to time constriction and some extra elements and interactions were 
-added within the building to keep the game interesting. 
+Everything outside of the building were eliminated due to time constriction and some extra elements (within the escape room) and interactions were added within the building to keep the game interesting. 
 
 New thing that we added: The AR, which stands for alarm room starts an alarm(AudioFIle) for a limited time. 
 
