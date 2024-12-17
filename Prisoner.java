@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Prisoner extends People {
     protected String crime;
@@ -21,9 +21,9 @@ public class Prisoner extends People {
      * constructor
      * @param name of the player
      * @param age of the player
-     * @param title would be player/ prisoner
      * @param crime would be the crime he'd committed to be in the prison
      * @param prisonerNumber would be his unique identity number in the prison
+     * @param status whether the player is in jail or escpaed
      * use x, y, and z axis to change locations
      */
 
@@ -60,7 +60,7 @@ public class Prisoner extends People {
     /**
      * sends the player to east direction by subtracting 2 value to x axis.
      */
-     public void goEast(){
+    public void goEast(){
         if (this.x - 2 >= minX) { // Check if within bounds
             this.x -= 2;
             this.lastMove = "east";
@@ -101,7 +101,7 @@ public class Prisoner extends People {
     public void goSouth(){
         if (this.y-2 >= minY){
             this.y -=2;
-         this.lastMove = "south";
+            this.lastMove = "south";
         } else{
             System.out.println("You can't move south. There's wall or locked door");
         }
@@ -118,11 +118,11 @@ public class Prisoner extends People {
                 this.lastMove = "down";
             } else {
                 System.out.println("You need to be near the stairs to go down. ");
-            }           
+            }
         } else {
             System.out.println("you can't go beyond this floor.");
         }
-        
+
         //getlocation
     }
 
@@ -140,33 +140,33 @@ public class Prisoner extends People {
         } else {
             System.out.println("you can't go beyond this floor.");
         }
-       
-       
+
+
         //getlocation
     }
 
     /**
      * reverses the last move
      */
-       
+
 
     public void goback() {
         if (this.lastMove.equals("east")) {
-            this.x += 2;  
+            this.x += 2;
             //getlocation()
         } else if (this.lastMove.equals("west")) {
-            this.x -= 2; 
+            this.x -= 2;
             //getlocation()
         } else if (this.lastMove.equals("down")) {
-            this.z += 2;  
+            this.z += 2;
             //getlocation()
         } else if (this.lastMove.equals("up")) {
-            this.z -= 2; 
+            this.z -= 2;
 
         } else if (this.lastMove.equals("north")) {
-            this.y -= 2;  
+            this.y -= 2;
         } else if (this.lastMove.equals("south")) {
-                this.y += 2; 
+            this.y += 2;
         } else {
             System.out.println("No previous move to undo.");
         }
@@ -213,7 +213,9 @@ public class Prisoner extends People {
     }
 
     public static void main(String[] args) {
-        String allCommands[] = {"move 'directions' (e.g. move east, move up, etc.)","reverse", "help", "quit"};
+        //String allCommands[] = {"move 'directions' (e.g. move east, move up, etc.)","reverse", "help", "quit"};
+        Prisoner p=new Prisoner("es",2,"Murder",4,Status.IN_JAIL);
+        p.getHelp();
     }
 
 
