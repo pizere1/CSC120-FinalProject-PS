@@ -192,8 +192,23 @@ public class Prisoner extends People {
     }
 
     public void getHelp(){
-        String arrayAsString = Arrays.toString(allCommands);
-        System.out.println(arrayAsString); 
+        String movementcommands=("* move/go +'directions' (e.g. move east, move up) reverse");
+        String move =("* look around, speak");
+        String openingobejects=("* open + 'object', unlock door");
+        String answers =("* yes,no, choose, leave");
+        String answer =("* close, read + 'object / it' ");
+        String help =("* help");
+        ArrayList<String>Help=new ArrayList<>();
+        Help.add(movementcommands);
+        Help.add(answers);
+        Help.add(move);
+        Help.add(openingobejects);
+        Help.add(answer);
+        Help.add(help);
+        System.out.println("Here are the commands you can use");
+        for(String command:Help){
+            System.out.println(command);
+        }
 
     }
 
