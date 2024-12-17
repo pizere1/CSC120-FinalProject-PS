@@ -77,7 +77,7 @@ public class UserInterface {
         mapper.addRoom("Jailer's Office", 0, 0, -2);
 
         mapper.addRoom("AR", 0, -2, -2);//14
-        mapper.addRoom("Hallway between ER and AR", 2, -2, -2);
+        mapper.addRoom("Hallway ending South", 2, -2, -2);
         mapper.addRoom("ER", 4, -2, -2);//15
 
 

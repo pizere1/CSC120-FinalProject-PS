@@ -52,6 +52,9 @@ public class RoomMapper {
 
             case "Walls":
                 System.out.println("");
+
+            case "Jailer's Office":
+                System.out.println("You're in the jailer's office. Leave before he comes.");
     
             default:
                 System.out.println("");
