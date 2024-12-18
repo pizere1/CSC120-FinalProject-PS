@@ -1,167 +1,177 @@
-import java.io.File;
-import java.util.HashMap;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-
-public class RoomMapper {
+import java.util.Scanner;
+public class UserInterface {
     /**
      * Attributes
      */
-    private HashMap<String, String> roomMap;
-    EscapeRoom es=new EscapeRoom("ER",4,-2,-2,12);
+    public static Prisoner prisoner;
 
     /**
-     * Constructor for the RoomMapper class
+     * Functions to show the player's status
      */
-    public RoomMapper() {
-        roomMap = new HashMap<>();
-
+    private static void showStatus() {
+        System.out.println("\n=== Prisoner Status ===");
+        System.out.println("Name: " + prisoner.getName());
+        System.out.println("State: " + prisoner.getStatus());
+        System.out.println("Position: X = " + prisoner.x + ", Y = " + prisoner.y + ", Z = " + prisoner.z);
+        System.out.println("Crime: " + prisoner.getCrime());
+        System.out.println("=========================");
     }
 
     /**
-     * Adds a room to the map
-     * @param roomName the room of the name
-     * @param x x coordinate
-     * @param y y coordinate
-     * @param z z coordinate
+     * Main function
+     * @param args takes in string arguments
      */
-    public void addRoom(String roomName, int x, int y, int z) {
-        String key = generateKey(x, y, z);
-        roomMap.put(key, roomName);
-    }
-
-    /**
-     * Function to get a location of given coordinates
-     * @param x takes in the x coordinate
-     * @param y takes in the y coordinate
-     * @param z takes in the z coordinate
-     * @return the location or walls if there is no specific feature
-     */
-    public String getLocation(int x, int y, int z) {
-        String key = generateKey(x, y, z);
-        return roomMap.getOrDefault(key, "Walls"); // Return room name or default message
-    }
-
-    /**
-     * Function to evealute the current location
-     * @param x takes in the x coordinate
-     * @param y takes in the y coordinate
-     * @param z takes in the z coordinate
-     * @param mapper takes in an instance of roommapper
-     * @param cellMate takes in an instance of cellmate
-     */
-    public void evaluateLocation(int x, int y, int z, RoomMapper mapper, CellMate cellMate) {
-        String location = mapper.getLocation(x, y, z);
-
-        switch (location) {
-            case "End of Hallway on South":
-                System.out.println("You see your cellmate in the cell nearby.");
-                System.out.println("You can type 'speak' to talk to him.");
-                break;
-
-            case "AR":
-                System.out.println("An alarm blares loudly as you enter the room!");
-                this.playSound();
-                break;
-
-            case "ER":
-                System.out.println("Congratulations! You've reached the escape room.");
-                es.roomStructure();
-                break;
-
-            case "Walls":
-                System.out.println("You cannot go beyond the walls.");
-
-            case "Main Door, End of Hallway on North":
-                System.out.println("The main door is guarded by security. You cannot move to north further.");
-
-            default:
-                System.out.println("");
-                break;
-        }
-    }
-
-    /**
-     * method for the player to look  locations in different directions
-     * @param x 
-     * @param y
-     * @param z
-     * all the parameters are passed with decreased or increased coordinates in realation to their directions
-     */
-
-    public void lookAround(int x, int y, int z){
-        System.out.println("\n Nearby Locations:\n");
-        System.out.println("North: " + getLocation(x, y + 2, z));
-        System.out.println("South: " + getLocation(x, y - 2, z));
-        System.out.println("East: " + getLocation(x - 2, y, z));
-        System.out.println("West: " + getLocation(x + 2, y, z));
-    }
-
-    /**
-     * function to play sound
-     */
-    public void playSound() {
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("/Users/sdumre/Downloads/mixkit-facility-alarm-sound-999.wav").getAbsoluteFile());
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-        } catch(Exception ex) {
-            System.out.println("Error with playing sound.");
-            ex.printStackTrace();
-        }
-    }
-
-    /**
-     * function to check for a clue from the cellmate
-     * @param x takes in the x location
-     * @param y takes in the y location
-     * @param z takes in the z location
-     * @param cellMate takes in an instance of a cellmate
-     */
-    public void clueCheck(int x, int y, int z, CellMate cellMate){
-        if (x == 2 && y == -2 && z == 0){
-            cellMate.cellMateInfo();
-            System.out.println("You should consider speaking to him.\n");
-        }
-    }
-
-    /**
-     * Function to generate a key for the current location to use in a map
-     * @param x takes in an x coordinate
-     * @param y takes in a y coordinate
-     * @param z takes in a z coordinate
-     * @return the coordinates concatenated
-     */
-    private String generateKey(int x, int y, int z) {
-        return x + "," + y + "," + z; // changes coordinates to string
-    }
-
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("------------------------------------\n");
+        System.out.println("WELCOME TO CHANDRA BIHAR PRISON.");
+        System.out.println("------------------------------------\n");
+        System.out.println("Enter a name for your player");
+        String name = in.nextLine();
+
+        int age = 0;
+        while (age < 1 || age>120){
+            System.out.println("Enter an age for your player");
+            try {
+                age = in.nextInt();
+                if(age < 1 || age>120){
+                    System.out.print("Try a valid age, bro. ");
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid Input. Please enter a valid positive integer for age" );
+                in.nextLine();
+            }
+        }
+
+        int prisonerNumber = 0;
+        while (prisonerNumber < 100 || prisonerNumber >= 1000){
+            System.out.println("Enter any random 3 digit number");
+
+            try {
+                prisonerNumber = in.nextInt();
+            } catch (Exception e) {
+                System.out.println("Invalid Input. Please enter a valid 3 digit positive integer" );
+                in.nextLine();
+            }
+        }
+        in.nextLine();
+
+        Prisoner player = new Prisoner(name, age, "Heist", prisonerNumber, Status.IN_JAIL);
         RoomMapper mapper = new RoomMapper();
+        TheBox theBox=new TheBox(prisonerNumber);
         CellMate cellMate = new CellMate("RamHari", 14, 621);
+        //EscapeRoom escapeRoom = new EscapeRoom("Escape Room", 4 , -2, -2, 9);
 
-        /**
-         * Adding rooms to the RoomMapper instance
-         */
-        mapper.addRoom("Prison Cell", 0, 0, 0); //1
+        mapper.addRoom("Cellmate's Cell", 0, -2, 0);//1
+        mapper.addRoom("End of Hallway on South", 2, -2, 0);//2
+        mapper.addRoom("Bathroom", 4, -2, 0); //3
+
+        mapper.addRoom("Your Prison Cell", 0, 0, 0); //1
         mapper.addRoom("Hallway in front of cell 11", 2, 0, 0);// 2
-        mapper.addRoom("Hallway in front of the cellmate at cell 12, End of Hallway on South", 2, -2, 0);//3
-        mapper.addRoom("Cellmate's Cell", 0, -2, 0);//4
-        mapper.addRoom("Hallway Right to the Bathroom", 2, 2, 0); //5
-        mapper.addRoom("Bathroom", 4, 2, 0); //6
-        mapper.addRoom("End of Hallway on North", 2, 4, 0); //7
-        mapper.addRoom("Window on East End", 0, 4, 0);//8
-        mapper.addRoom("Start of The Stair", 4, 6, 0);//9
-        mapper.addRoom("Downstairs Lower Level- end of the stairs", 4, 6, -2);//10
-        mapper.addRoom(" Hallway- Lower level, infront of the stairs ", 2, 6, -2);//11
-        mapper.addRoom("Hallway at the Lower Level", 2, 0, -2);//12
-        mapper.addRoom("Susipcious Passage Way", 4, 0, -2);//13
-        mapper.addRoom("Alarm Room", 0, -2, -2);//14
-        mapper.addRoom("ESCAPE ROOM", 4, -2, -2);//15
+        mapper.addRoom("Open Space", 4,0, 0);
+
+        mapper.addRoom("Window on East End", 0, 2, 0);//8
+        mapper.addRoom("Main Door, End of Hallway on North", 2, 2, 0); //7
+        mapper.addRoom("Ground Floor- Stairs", 4, 2, 0);//9
 
 
-        System.out.println(mapper.getLocation(0, 0, 0)); // Output: Prison Cell
+        mapper.addRoom("Basement stairs", 4, 2, -2);//10
+        mapper.addRoom("Middle of the Hallway in north end", 2, 4, -2);//11
+        mapper.addRoom("Hallway of East End", 0, 2, -2);
+
+        mapper.addRoom("Open Space", 4, 0, -2);
+        mapper.addRoom("Hallway", 2, 0, -2);//10
+        mapper.addRoom("Jailer's Office", 0, 0, -2);
+
+        mapper.addRoom("AR", 0, -2, -2);//14
+        mapper.addRoom("Hallway ending South", 2, -2, -2);
+        mapper.addRoom("ER", 4, -2, -2);//15
+
+
+        System.out.println( "\n You wakeup inside a gray room. You have number "+ prisonerNumber +" written on your jumpsuit.\n You remember nothing about who you are or how you reached inside this PRISON. \n"+
+                "Your mind is blank as the walls of the room. You are less safe inside these walls than anywhere else.\n" );
+        System.out.println(" You need to figure out an escape. You look around to find a door infront of you and a box in your room.\n What is your next move?");
+
+        while (true){
+
+            System.out.print("\nEnter command: ");
+            String command = in.nextLine().toLowerCase().trim();
+
+            if (command.equals("quit")) {
+                System.out.println("Quitting game...");
+                break;
+            } else if (command.contains("move") || command.contains("go")) {
+                if (!theBox.isDoorUnlocked()){
+                    System.out.println("The door is locked. You cannot move until you unlock the door.");
+                    continue;
+                }
+                if (command.contains("east")){
+                    player.goEast();
+                } else if (command.contains ("west")){
+                    player.goWest();
+                } else if (command.contains("north")){
+                    player.goNorth();
+                } else if (command.contains("south")){
+                    player.goSouth();
+                } else if (command.contains("up")){
+                    player.goUp();
+                } else if (command.contains("down")){
+                    player.goDown();
+                } else if (command.contains("door")){
+                    theBox.goToDoor();
+                } else {
+                    System.out.println("Please type full command.");
+                }
+                System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
+                mapper.evaluateLocation(player.getX(), player.getY(), player.getZ(), mapper, cellMate);
+                // } else if (command.contains("escape")) {
+                // player.escape();
+            } else if (command.contains("status")) {
+                showStatus();
+            } else if (command.contains("reverse") || command.contains("undo"))  {
+                player.goback();
+                mapper.getLocation(player.getX(),player.getY(),player.getZ());
+            } else if (command.equals("get location")){
+                String location = mapper.getLocation(player.getX(),player.getY(),player.getZ());
+                System.out.println("you're at: "+location);
+            } else if (command.equals("look around")){
+                mapper.lookAround(player.getX(), player.getY(), player.getZ());
+            } else if (command.contains("open") | command.contains("unlock") ){
+                if (command.contains("box")){
+                    theBox.openBoX();
+                } else if (command.contains("door") || command.contains("lock")){
+                    if (!theBox.isDoorUnlocked()){
+                        theBox.openLock();
+                        if (theBox.isDoorUnlocked()){
+                            player.x +=2;
+                            System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
+                        }
+
+                    }
+                } else {
+                    System.out.println("Please type full command.");
+                }
+            } else if (command.equals("speak")){
+                if (player.getX() == 2 && player.getY() == -2 && player.getZ() == 0) {
+                    cellMate.cellMateInfo();
+                    cellMate.speak(player);
+                } else {
+                    System.out.println("There's no one here to speak to.");
+                }
+            } else if (command.equals("go to door")){
+                theBox.goToDoor();
+            } else if (command.equals("open door") || command.equals("open lock")) {
+                theBox.openLock();
+                player.x+=2;
+            } else if (command.contains("help")){
+                System.out.println("All required Commands:\n");
+                player.getHelp();
+            }
+            else {
+                System.out.println("Unknown command. Try again.");
+            }
+
+
+        }
     }
 }
