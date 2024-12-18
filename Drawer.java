@@ -59,7 +59,7 @@ public class Drawer {
         } else if(choice.contains("leave")) {
             System.out.println("You didn't pick an item. You reclosed the drawer. You are still in the locked room and " +
                     "the time is going down.");
-             } else{
+        } else{
             System.out.println("Sorry, I am not quite sure what you mean by that.");
             drawerChoices();
         }
@@ -105,7 +105,31 @@ public class Drawer {
      * @param item takes in the item
      */
     public void choseOptions(String item){
-        
+
+    }
+    public void playerchoices(String theItem) {
+        System.out.println("Do you want to put "+theItem +" back in or take it with you. ");
+        String choice=scanner.nextLine();
+        choice = choice.toLowerCase();
+        if(choice.contains("put")&&(choice.contains("back")&&(choice.contains(theItem)))) {
+            System.out.println("You have put back" +theItem +" in the drawer.");
+            finalchoices();
+        } else if(choice.contains("put")&&(choice.contains("down")&&(choice.contains(theItem)))) {
+            System.out.println("You have put back" +theItem +" in the drawer.");
+            finalchoices();
+        } else if(choice.contains("put it")&&(choice.contains("back"))) {
+            System.out.println("You have put back" +theItem +" in the drawer.");
+            finalchoices();
+        }else if(choice.contains("put it")&&(choice.contains("down"))) {
+            System.out.println("You have put back" +theItem +" in the drawer.");
+            finalchoices();
+        }else if (choice.contains("take")||(choice.contains(theItem))) {
+            System.out.println("You have taken and kept " + theItem);
+            finalchoices();
+        } else{
+            System.out.println("Sorry, I don't understand what you mean.");
+            playerchoices(theItem);
+        }
     }
 
 }
