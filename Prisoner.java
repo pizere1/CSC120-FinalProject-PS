@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 
 public class Prisoner extends People {
+    /**
+     * Attributes
+     */
     protected String crime;
     private int prisonerNumber;
     public int x;
@@ -15,7 +18,6 @@ public class Prisoner extends People {
     private String lastMove;
     protected Status status;
     public String[] allCommands;
-
 
     /**
      * constructor
@@ -41,18 +43,24 @@ public class Prisoner extends People {
         this.maxZ = 0;
         this.minZ = -2;
 
-
-
         this.lastMove = "";
         this.status = status;
 
     }
-    //methods
+
+    /**
+     *Function for checking the prisoner's current status
+     * @return their in_jail or escaped status
+     */
 
     public Status getStatus(){
         return this.status;
     }
 
+    /**
+     * Function to get the prisoner's crime
+     * @return their crime
+     */
     public String getCrime(){
         return this.crime;
     }
@@ -123,7 +131,6 @@ public class Prisoner extends People {
             System.out.println("you can't go beyond this floor.");
         }
 
-        //getlocation
     }
 
     /**
@@ -141,8 +148,6 @@ public class Prisoner extends People {
             System.out.println("you can't go beyond this floor.");
         }
 
-
-        //getlocation
     }
 
     /**
@@ -173,24 +178,46 @@ public class Prisoner extends People {
 
         this.lastMove = ""; //Reseetting into empty set again because we've reversed the direction
     }
+
+    /**
+     * Function for getting the prisone'r current x location
+     * @return their x location
+     */
     public int getX(){
         return this.x;
     }
 
+    /**
+     * Function for getting the prisoner's current y location
+     * @return their y location
+     */
     public int getY(){
         return this.y;
     }
 
+    /**
+     * Function for returning the prisoner's z location
+     * @return their z location
+     */
     public int getZ(){
         return this.z;
     }
 
+    /**
+     * Function for setting the prioners location
+     * @param x takes in the new x
+     * @param y takes in the new y
+     * @param z takes in the new z
+     */
     public void setLocation(int x, int y, int z){
         this.x = x;
         this.y = y;
         this.z = z;
     }
 
+    /**
+     * Function for giving help about available commands
+     */
     public void getHelp(){
         String movementcommands=("* move/go +'directions' (e.g. move east, move up) reverse");
         String move =("* look around, speak");
@@ -220,10 +247,3 @@ public class Prisoner extends People {
 
 
 }
-
-
-//thoughts for now 
-
-//have a get location class in building or somewhere
-
-// have a location limit (like a maximum value of axis)
