@@ -55,7 +55,7 @@ public class RoomMapper {
         String location = mapper.getLocation(x, y, z);
 
         switch (location) {
-            case "Hallway in front of the cellmate at cell 12, End of Hallway on South":
+            case "End of Hallway on South":
                 System.out.println("You see your cellmate in the cell nearby.");
                 System.out.println("You can type 'speak' to talk to him.");
                 break;
@@ -71,13 +71,24 @@ public class RoomMapper {
                 break;
 
             case "Walls":
-                System.out.println("");
+                System.out.println("You cannot go beyond the walls.");
+
+            case "Main Door, End of Hallway on North":
+                System.out.println("The main door is guarded by security. You cannot move to north further.");
 
             default:
                 System.out.println("");
                 break;
         }
     }
+
+    /**
+     * method for the player to look  locations in different directions
+     * @param x 
+     * @param y
+     * @param z
+     * all the parameters are passed with decreased or increased coordinates in realation to their directions
+     */
 
     public void lookAround(int x, int y, int z){
         System.out.println("\n Nearby Locations:\n");

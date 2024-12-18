@@ -76,7 +76,7 @@ public class UserInterface {
 
 
         mapper.addRoom("Basement stairs", 4, 2, -2);//10
-        mapper.addRoom("Middle of the Hallway in north end", 2, 4, -2);//11
+        mapper.addRoom("Middle of the Hallway in north end", 2, 2, -2);//11
         mapper.addRoom("Hallway of East End", 0, 2, -2);
 
         mapper.addRoom("Open Space", 4, 0, -2);
