@@ -31,7 +31,7 @@ public class Drawer {
         items.add(item6);
 
     }
-    /** 
+    /**
      *function for opening the drawer
      */
     public void openDrawer() {
@@ -42,7 +42,7 @@ public class Drawer {
         }
         drawerChoices();
     }
-     /** 
+    /**
      * Function to manager the player's choices regarding the drawer
      */
     public void drawerChoices() {
@@ -56,19 +56,19 @@ public class Drawer {
             }
             String pickedItem=scanner.nextLine();//what if they say I choose
             choseOptions(pickedItem);
-            //grab(pickedItem);
-            // grab(chosenItem);
         } else if(choice.contains("leave")) {
             System.out.println("You didn't pick an item. You reclosed the drawer. You are still in the locked room and " +
                     "the time is going down.");
-            //How to connect it to another drawer (maybe ask, do you want to go to another drawer?)
-            //if yes, create its object and call it.
-            //maybe have a super function that is called while passing the name of the drawer, and when it sees the name, it calls the constructor  of another drawe
-        } else{
+             } else{
             System.out.println("Sorry, I am not quite sure what you mean by that.");
             drawerChoices();
         }
     }
+
+    /**
+     * function for putting back an item
+     * @param theItem takes in an item
+     */
     public void putback(String theItem) {
         for(String t:items) {
             if(t.contains(theItem)) {
@@ -80,6 +80,9 @@ public class Drawer {
         }
     }
 
+    /**
+     * Function for making the final choices after putting back an object
+     */
     public void finalchoices(){
         System.out.println("Do you want to pick another item or close the drawer.");
         String command=scanner.nextLine();
@@ -97,20 +100,12 @@ public class Drawer {
         }
     }
 
-//    private void grab(String item){
-//        pickedItem=item.toLowerCase();
-//        for(String i:items) {
-//            if(pickedItem.contains(i)) {
-//                this.chosenItem=i;
-//                System.out.print("You have taken the " + this.chosenItem+". ");
-//                chosenOptions(this.chosenItem);
-//                break;
-//            } else{
-//                System.out.println("There is no "+ pickedItem +" in the box. Choose between the available items.");
-//                drawerChoices();
-//            }
-//        }
-//    }
-    public void choseOptions(String item){}
+    /**
+     * A function for deciding what to do with a chosen item, gets overriden by every child class specification
+     * @param item takes in the item
+     */
+    public void choseOptions(String item){
+        
+    }
 
 }
