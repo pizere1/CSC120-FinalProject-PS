@@ -1,10 +1,13 @@
 import java.util.Scanner;
-
 public class UserInterface {
-
+    /**
+     * Attributes
+     */
     public static Prisoner prisoner;
 
-
+    /**
+     * Functions to show the player's status
+     */
     private static void showStatus() {
         System.out.println("\n=== Prisoner Status ===");
         System.out.println("Name: " + prisoner.getName());
@@ -13,7 +16,11 @@ public class UserInterface {
         System.out.println("Crime: " + prisoner.getCrime());
         System.out.println("=========================");
     }
-    
+
+    /**
+     * Main function
+     * @param args takes in string arguments
+     */
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("------------------------------------\n");
@@ -21,30 +28,30 @@ public class UserInterface {
         System.out.println("------------------------------------\n");
         System.out.println("Enter a name for your player");
         String name = in.nextLine();
-       
+
         int age = 0;
-        while (age < 1 || age>120){ 
+        while (age < 1 || age>120){
             System.out.println("Enter an age for your player");
             try {
-            age = in.nextInt();
-            if(age < 1 || age>120){
-                System.out.print("Try a valid age, bro. ");
-            }
+                age = in.nextInt();
+                if(age < 1 || age>120){
+                    System.out.print("Try a valid age, bro. ");
+                }
             } catch (Exception e) {
-            System.out.println("Invalid Input. Please enter a valid positive integer for age" );
-            in.nextLine();
+                System.out.println("Invalid Input. Please enter a valid positive integer for age" );
+                in.nextLine();
             }
         }
 
         int prisonerNumber = 0;
-        while (prisonerNumber < 100 || prisonerNumber >= 1000){ 
+        while (prisonerNumber < 100 || prisonerNumber >= 1000){
             System.out.println("Enter any random 3 digit number");
 
             try {
-            prisonerNumber = in.nextInt();
+                prisonerNumber = in.nextInt();
             } catch (Exception e) {
-            System.out.println("Invalid Input. Please enter a valid 3 digit positive integer" );
-            in.nextLine();
+                System.out.println("Invalid Input. Please enter a valid 3 digit positive integer" );
+                in.nextLine();
             }
         }
         in.nextLine();
@@ -81,12 +88,12 @@ public class UserInterface {
         mapper.addRoom("ER", 4, -2, -2);//15
 
 
-        System.out.println( "\n You wakeup inside a gray room. You have number "+ prisonerNumber +" written on your jumpsuit.\n You remember nothing about who you are or how you reached inside this PRISON. \n"+  
-        "Your mind is blank as the walls of the room. You are less safe inside these walls than anywhere else.\n" );
-       System.out.println(" You need to figure out an escape. You look around to find a door infront of you and a box in your room.\n What is your next move?");
-   
+        System.out.println( "\n You wakeup inside a gray room. You have number "+ prisonerNumber +" written on your jumpsuit.\n You remember nothing about who you are or how you reached inside this PRISON. \n"+
+                "Your mind is blank as the walls of the room. You are less safe inside these walls than anywhere else.\n" );
+        System.out.println(" You need to figure out an escape. You look around to find a door infront of you and a box in your room.\n What is your next move?");
+
         while (true){
-            
+
             System.out.print("\nEnter command: ");
             String command = in.nextLine().toLowerCase().trim();
 
@@ -115,10 +122,10 @@ public class UserInterface {
                 } else {
                     System.out.println("Please type full command.");
                 }
-               System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
-               mapper.evaluateLocation(player.getX(), player.getY(), player.getZ(), mapper, cellMate);
-           // } else if (command.contains("escape")) {
-               // player.escape();
+                System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
+                mapper.evaluateLocation(player.getX(), player.getY(), player.getZ(), mapper, cellMate);
+                // } else if (command.contains("escape")) {
+                // player.escape();
             } else if (command.contains("status")) {
                 showStatus();
             } else if (command.contains("reverse") || command.contains("undo"))  {
@@ -140,10 +147,10 @@ public class UserInterface {
                             System.out.println("you're at: " + mapper.getLocation(player.getX(),player.getY(),player.getZ()));
                         }
 
-                    }           
+                    }
                 } else {
                     System.out.println("Please type full command.");
-                }             
+                }
             } else if (command.equals("speak")){
                 if (player.getX() == 2 && player.getY() == -2 && player.getZ() == 0) {
                     cellMate.cellMateInfo();
@@ -166,7 +173,5 @@ public class UserInterface {
 
 
         }
-        }
     }
-
-
+}
