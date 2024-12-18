@@ -1,13 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class TheBox {
-
+    /**
+     * Attributes
+     */
     public int prisonerNumber;
-    public TheBox(int prisonerNumber){
-        this.prisonerNumber = prisonerNumber;
-        boxContent();
-    }
-
     Scanner scanner = new Scanner(System.in);
     String userInput;
     Scanner sc = new Scanner(System.in);
@@ -21,16 +18,34 @@ public class TheBox {
     boolean itemInHand;
     boolean doorUnlocked = false;
     public ArrayList<String> boxContent=new ArrayList<>();
+    /**
+     * Constructor for the box class
+     */
+    public TheBox(int prisonerNumber){
+        this.prisonerNumber = prisonerNumber;
+        boxContent();
+    }
+
+    /**
+     * Function for adding contents to the box
+     */
     private void boxContent(){
         boxContent.add(pocketKnife);
         boxContent.add(key);
         boxContent.add(rope);
     }
 
+    /**
+     * function for checking if the door in unlocked
+     * @return the door close/opening status
+     */
     public boolean isDoorUnlocked(){
         return doorUnlocked;
     }
 
+    /**
+     * Function for choices when interacting with the box
+     */
     public void boxChoices(){
         System.out.println("There is a box in front of you.");
         userInput = scanner.nextLine();
@@ -46,6 +61,11 @@ public class TheBox {
         }
     }
 
+    /**
+     * Function for breaking the code to open the box
+     * @param code takes in a code
+     * @return if it true or false
+     */
     private boolean codeBreaking(int code){
         if (code == prisonerNumber){
             this.isCracked=true;
@@ -55,6 +75,10 @@ public class TheBox {
         }
         return isCracked;
     }
+
+    /**
+     * Function to go to the door
+     */
     public void goToDoor(){
         if (doorUnlocked == false){
             System.out.println("You're at the door. You see a lock. What is your next move?");
@@ -63,6 +87,9 @@ public class TheBox {
         }
     }
 
+    /**
+     * Function to open the doorlock
+     */
     public void openLock(){
         if (itemInHand == true){
             if (pickedItem.contains("pocket knife")){
@@ -76,8 +103,9 @@ public class TheBox {
         }
     }
 
-
-
+    /**
+     * Function to open the box
+     */
     public void openBoX(){
         if(this.wasOpened==true){
             System.out.println("Reopening the box.");
@@ -98,10 +126,12 @@ public class TheBox {
                 sc.nextLine();
                 openBoX();
             }
-//            sc.nextLine();
-//            boxDisplay();
         }
     }
+
+    /**
+     * Function to display the contents of the box
+     */
     private void boxDisplay(){
         System.out.print("The box contains the following items: ");
         System.out.println(boxContent);
@@ -109,6 +139,11 @@ public class TheBox {
         String pickedItem=sc.nextLine();
         grab(pickedItem);
     }
+
+    /**
+     * Function to grab an item
+     * @param item takes in the name of the item
+     */
     private void grab(String item){
         pickedItem=item.toLowerCase();
         if(boxContent.contains(pickedItem)){
